@@ -1,0 +1,125 @@
+Connected to ftp.ncep.noaa.gov.
+220-
+220-
+220-**WARNING**WARNING**WARNING**WARNING**WARNING**WARNING*
+220-
+220-YOU HAVE ACCESSED A UNITED STATES GOVERNMENT COMPUTER.
+220-USE OF THIS COMPUTER WITHOUT AUTHORIZATION OR FOR
+220-PURPOSES FOR WHICH AUTHORIZATION HAS NOT BEEN EXTENDED
+220-IS A VIOLATION OF FEDERAL LAW AND CAN BE PUNISHED WITH
+220-FINES OR IMPRISONMENT (PUBLIC LAW 99-474).  REPORT
+220-SUSPECTED VIOLATIONS TO THE SYSTEM SECURITY OFFICER.
+220-
+220-**WARNING**WARNING**WARNING**WARNING**WARNING**WARNING*
+220-
+220-
+220-******************************************************
+220-NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE
+220-
+220-This server is not considered operational.
+220-It is only supported Monday thru Friday between 0700
+220-and 1600 EST. 
+220-
+220-The NWS ftp server (140.90.6.103) is the most reliable
+220-source for operational data.  That server is supported
+220-on a 7x24 basis.
+220- 
+220-NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE
+220-******************************************************
+220-
+220 ftp.ncep.noaa.gov FTP server (Version wu-2.4.2-academ (1) Fri Jul 2 12:52:07 EDT 1999) ready.
+331 Guest login ok, send your complete e-mail address as password.
+230 Guest login ok, access restrictions apply.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+Interactive mode off.
+200 Type set to I.
+250 CWD command successful.
+local: eta.T00Z.AWIP3D00.tm00 remote: eta.T00Z.AWIP3D00.tm00
+227 Entering Passive Mode (140,90,97,24,80,79)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D00.tm00 (13320784 bytes).
+226 Transfer complete.
+13320784 bytes received in 15.2 secs (8.5e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D03.tm00 remote: eta.T00Z.AWIP3D03.tm00
+227 Entering Passive Mode (140,90,97,24,81,64)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D03.tm00 (13821954 bytes).
+226 Transfer complete.
+13821954 bytes received in 20.4 secs (6.6e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D06.tm00 remote: eta.T00Z.AWIP3D06.tm00
+227 Entering Passive Mode (140,90,97,24,83,195)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D06.tm00 (13875838 bytes).
+226 Transfer complete.
+13875838 bytes received in 23.3 secs (5.8e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D09.tm00 remote: eta.T00Z.AWIP3D09.tm00
+227 Entering Passive Mode (140,90,97,24,85,188)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D09.tm00 (13771438 bytes).
+226 Transfer complete.
+13771438 bytes received in 21.3 secs (6.3e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D12.tm00 remote: eta.T00Z.AWIP3D12.tm00
+227 Entering Passive Mode (140,90,97,24,87,49)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D12.tm00 (13822152 bytes).
+226 Transfer complete.
+13822152 bytes received in 19.4 secs (7e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D15.tm00 remote: eta.T00Z.AWIP3D15.tm00
+227 Entering Passive Mode (140,90,97,24,88,241)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D15.tm00 (13747386 bytes).
+226 Transfer complete.
+13747386 bytes received in 16 secs (8.4e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D18.tm00 remote: eta.T00Z.AWIP3D18.tm00
+227 Entering Passive Mode (140,90,97,24,90,7)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D18.tm00 (13774420 bytes).
+226 Transfer complete.
+13774420 bytes received in 15 secs (9e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D21.tm00 remote: eta.T00Z.AWIP3D21.tm00
+227 Entering Passive Mode (140,90,97,24,91,22)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D21.tm00 (13777406 bytes).
+226 Transfer complete.
+13777406 bytes received in 19 secs (7.1e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D24.tm00 remote: eta.T00Z.AWIP3D24.tm00
+227 Entering Passive Mode (140,90,97,24,92,91)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D24.tm00 (13702832 bytes).
+226 Transfer complete.
+13702832 bytes received in 20.7 secs (6.5e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D27.tm00 remote: eta.T00Z.AWIP3D27.tm00
+227 Entering Passive Mode (140,90,97,24,94,58)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D27.tm00 (13634028 bytes).
+226 Transfer complete.
+13634028 bytes received in 15.7 secs (8.5e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D30.tm00 remote: eta.T00Z.AWIP3D30.tm00
+227 Entering Passive Mode (140,90,97,24,95,35)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D30.tm00 (13699840 bytes).
+226 Transfer complete.
+13699840 bytes received in 17.5 secs (7.7e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D33.tm00 remote: eta.T00Z.AWIP3D33.tm00
+227 Entering Passive Mode (140,90,97,24,96,119)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D33.tm00 (13741610 bytes).
+226 Transfer complete.
+13741610 bytes received in 18.2 secs (7.4e+02 Kbytes/sec)
+local: eta.T00Z.AWIP3D36.tm00 remote: eta.T00Z.AWIP3D36.tm00
+227 Entering Passive Mode (140,90,97,24,97,185)
+150 Opening BINARY mode data connection for eta.T00Z.AWIP3D36.tm00 (13768460 bytes).
+226 Transfer complete.
+13768460 bytes received in 19.2 secs (7e+02 Kbytes/sec)
+250 CWD command successful.
+local: imssnow.grb remote: imssnow.grb
+227 Entering Passive Mode (140,90,97,24,98,161)
+150 Opening BINARY mode data connection for imssnow.grb (1052498 bytes).
+226 Transfer complete.
+1052498 bytes received in 1.32 secs (7.8e+02 Kbytes/sec)
+local: snowdepth.grb remote: snowdepth.grb
+227 Entering Passive Mode (140,90,97,24,98,178)
+150 Opening BINARY mode data connection for snowdepth.grb (261522 bytes).
+226 Transfer complete.
+261522 bytes received in 0.521 secs (4.9e+02 Kbytes/sec)
+250 CWD command successful.
+local: gdas1.T00Z.sstgrb remote: gdas1.T00Z.sstgrb
+227 Entering Passive Mode (140,90,97,24,98,206)
+150 Opening BINARY mode data connection for gdas1.T00Z.sstgrb (154068 bytes).
+226 Transfer complete.
+154068 bytes received in 0.351 secs (4.3e+02 Kbytes/sec)
+local: gdas1.T00Z.sstgrb.index remote: gdas1.T00Z.sstgrb.index
+227 Entering Passive Mode (140,90,97,24,98,218)
+150 Opening BINARY mode data connection for gdas1.T00Z.sstgrb.index (386 bytes).
+226 Transfer complete.
+386 bytes received in 0.0542 secs (7 Kbytes/sec)
+221 Goodbye.

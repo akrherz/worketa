@@ -1,0 +1,67 @@
+
+IV.  Determining your computational domain: ETAMAP
+
+A  program is provided (etamap) to simplify the job of selecting a
+computational domain for the workstation Eta. Etamap is  based  on
+the GEMPAK program, gpmap, but takes the parameters used to define
+your model domain specified in eta_run.csh. The default output  is
+an X-window display, but you can also generate a gif or postscript
+file.
+
+The  tar  files containing the etamap distribution are located  in
+the $WS_ETA/util directory. The program and attendant files should
+be installed as part of your NAWIPS distribution.
+
+To install: (As user gempak)
+
+     % mv etamap_{OS}.tar.Z $NAWIPS   - (usually /usr1/nawips)
+     % cd $NAWIPS
+     % zcat etamap_{OS}.tar.Z | tar xvf -
+     % rehash
+
+Make   sure  that  you  don't  get  any  error  messages   saying,
+"Permission denied".  If this is the case, then do the following:
+
+     % cd $NAWIPS/gempak
+     % chmod -R 755     help    parm    pdf
+
+Then repeat the installation.
+
+To run the program:
+
+     % etamap
+     GCENTER   Lat-Lon center                  39.0;-100.0
+     GSPACE    Model grid spacing              0.098
+     IMJM      Model Grid points               55;91
+     EMAP      Map color/dash/width            23//2
+     ETITLE    Title color/line/title          1/-2/ETA DOMAIN
+     LATLO     Line color/dash/width           18/10/1/1;1/2;2
+     ETEXT     Text size/font/width/hw flag    1/33//HW
+     DEVICE    Device|name|x size;y size|color XW
+     CLEAR     Clear screen flag               YES
+
+     GEMPAK-ETAMAP> list
+     GCENTER  = 39.0;-100.0        <-- WS ETA DOMAIN PARAMETER
+     GSPACE   = 0.098              <-- WS ETA DOMAIN PARAMETER
+     IMJM     = 55;91              <-- WS ETA DOMAIN PARAMETER
+     EMAP     = 23//2
+     ETITLE   = 1/-2/ETA DOMAIN
+     LATLO    = 18/10/1/1;1/2;2
+     ETEXT    = 1/33//HW
+     DEVICE   = XW
+     CLEAR    = YES
+     GEMPAK-ETAMAP>
+
+A  help  page is provided. Simply type "help etamap" at the gempak
+prompt.
+
+You  can  also  get help on any of the other parameters  (GCENTER,
+GSPACE,  IMJM,  etc.) by also typing, "help <parameter>",  at  the
+prompt.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Robert A. Rozumalski          NWS National SOO/STRC Coordinator
+                              Robert.Rozumalski@noaa.gov
+COMET/UCAR PO Box 3000        Phone:    (303) 497-8356
+Boulder, CO 80307-3000        FAX:      (303) 497-8491
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

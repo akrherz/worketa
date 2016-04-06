@@ -1,0 +1,81 @@
+#-------------------------------------------------------
+#
+# aliases file for Common usage
+# 
+# No need to make changes here, unless you want to make
+# them globally.  User customizations should go into
+# the file ".aliases" in the users home directory.
+#
+# Log
+# D.Himes/COMET ??
+# P.Bruehl/NWS  11/95   Revised for 5.2.1, documented
+# P.Bruehl/NWS	10/96	Checked for 5.4
+#-------------------------------------------------------
+#
+# Exit if noninteractive shell
+#
+if ($?0 || ! $?prompt) exit 0
+set TTY="`tty`"
+if ( "$TTY" == "not a tty" ) exit
+
+#
+#  OS specific aliases
+#
+switch ($OS)
+
+        case "HP-UX":
+        case "HPUX":
+		#
+		#  Kludge this in for the HP environment
+		#
+		if ( $term == "xterm" || $term == "dtterm" ) then
+			stty erase "^H" kill "^U" intr "^C" eof "^D" susp "^Z "
+			stty hupcl ixon ixoff tab3
+		endif
+		alias df       bdf
+		alias psg      'ps -ef | grep \!* | grep -v grep'
+        	breaksw
+
+        default:
+        	breaksw
+endsw
+
+#
+#  Generic aliases
+#
+alias dir       ls -F
+alias la        ls -a
+alias lla       ls -la
+alias ls        ls -CF
+alias sl	ls
+alias h         history
+alias pd        pushd
+alias pop       popd
+alias .         'echo $cwd'
+alias ..        'set dot=$cwd;cd ..'
+alias cd        'set old=$cwd;chdir \!*;pwd'
+alias lwd       'set lwd=$old;set old=$cwd;cd $lwd; unset lwd '
+alias xt '/usr/bin/X11/xterm -cr violet -bg navy -sb -sl 400 -ls -geometry 72x44-0+0 -n $host -fn "*-courier-*-r-*-140-*" '
+
+
+#
+# Miscellaneous stuff....
+#
+alias viwhich     'vi `which \!*`'
+alias ftp         ftp -i
+alias vt100       set term=vt100
+alias j           jobs -l
+alias pg          more
+
+
+
+# HP-VUE text editor
+alias te   '/usr/vue/bin/vuepad \!* &'
+
+# long list of files with paged output
+alias llm   'ls -la | more'
+
+# long list sorted by ascending time
+alias llt   'ls -latr'
+
+

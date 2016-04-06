@@ -1,0 +1,545 @@
+// ---------------------------------------------------------------------------
+// This software is in the public domain, furnished "as is", without technical
+// support, and with no warranty, express or implied, as to its usefulness for
+// any purpose.
+//
+// wsEta.cdl 	Meso Eta Model 
+//		cdl for 255 grid (Great Lakes Region - Lambert Conformal)
+//
+// Author: Tom Kent + Jim Ramer + Greg Mann
+// ---------------------------------------------------------------------------
+//
+// A few notes about this cdl file:
+//
+// - For each physical parameter represented here, there is two pieces of
+//   metadata meant to describe which levels it is available on.  The
+//   attribute `levels' is meant to be a human readable format that someone
+//   doing a ncdump can see.  The variable `xxxLevels' is the data that
+//   is parsed by the accessor to determine which 2d slab corresponds to
+//   which level.
+//
+// - The _n3D attribute is how many 2d slabs should be read in to get a
+//   three-dimensional description of this variable.  This will be used
+//   later to optimize access for cross sections and soundings.
+//
+// - The inventory variable is 2d based on record (valid time) and
+//   level.  There is a separate inventory variable for each
+//   meteorological variable.
+// 
+// - The forecast times are stored in the variable valtimeMINUSreftime,
+//   which is dimensioned n_valtimes in size.  n_valtimes should
+//   correspond to the number of records in a completely full file.
+//
+
+netcdf wsEta
+    {
+
+    dimensions:
+	record 		= UNLIMITED;
+        n_valtimes      = 17;
+	data_variables 	= 15;		// # of field variables
+	charsPerLevel 	= 10;
+	namelen 	= 132;
+	x 		= 73; 		// x dimension		
+	y 		= 61;		// y dimension
+
+        // arbitrary counters for number of levels
+        levels_1	= 1;
+        levels_16	= 16;
+        levels_20	= 20;
+        levels_22       = 22;
+	levels_26	= 26;
+	levels_2	= 2;
+        
+    variables:
+ 
+	//      Geopotential height
+	float
+	    gh(record, levels_20, y, x);
+	    gh:long_name = "Geopotential height";
+	    gh:units = "geopotential meters";
+	    gh:valid_range = 0.f, 10000.f;
+	    gh:_FillValue = -99999.f;
+	    gh:_n3D = 27;
+            gh:levels = "MB 1000-900 by 25  MB 850-150 by 50";
+        char
+            ghLevels(levels_20, charsPerLevel);
+        char
+            ghInventory(n_valtimes, levels_20);
+
+
+	//	Relative Humidity	
+	float
+	    rh(record, levels_22, y, x);
+	    rh:long_name = "Relative Humidity";
+	    rh:units = "percent";
+	    rh:valid_range = 0.f, 100.f;
+	    rh:_FillValue = -99999.f;
+	    rh:_n3D = 22;
+            rh:levels = "FHAG 2 MB 975-900 by 25  MB 850-300 by 50 BL 0>30 30>60 60>90 90>120 120>150";
+        char
+            rhLevels(levels_22, charsPerLevel);
+        char
+            rhInventory(n_valtimes, levels_22);
+    
+
+	//	temperature 	
+  	float
+	    t(record, levels_26, y, x);
+	    t:long_name = "Temperature";
+	    t:units = "degrees K";
+	    t:valid_range = 0.f, 400.f;
+	    t:_FillValue = -99999.f;
+	    t:_n3D = 27;
+            t:levels = "FHAG 2 MB 1000-900 by 25  MB 850-150 by 50 BL 0>30 30>60 60>90 90>120 120>150";
+        char
+            tLevels(levels_26, charsPerLevel);
+        char
+            tInventory(n_valtimes, levels_26);
+
+
+        //      Dewpoint Temperature
+        float
+            dpt(record,levels_26,y,x);
+            dpt:long_name = "Dewpoint Temperature";
+            dpt:units = "degrees K";
+            dpt:valid_range = 0.f, 400.f;
+            dpt:_FillValue = -99999.f;
+            dpt:_n3D = 1;
+            dpt:levels = "FHAG 2 MB 1000-900 by 25  MB 850-150 by 50 BL 0>30 30>60 60>90 90>120 120>150";
+        char
+            dptLevels(levels_26, charsPerLevel);
+        char
+            dptInventory(n_valtimes, levels_26);
+
+	
+	//	u wind component
+	float
+	    uw(record, levels_26, y, x);
+	    uw:long_name = "u wind component";
+	    uw:units = "meters/second";
+	    uw:valid_range = -300.f, 300.f;
+	    uw:_FillValue = -99999.f;
+	    uw:_n3D = 27;
+            uw:levels = "FHAG 10 MB 1000-900 by 25  MB 850-150 by 50 BL 0>30 30>60 60>90 90>120 120>150";
+        char
+            uwLevels(levels_26, charsPerLevel);
+        char
+            uwInventory(n_valtimes, levels_26);
+
+	
+	//	v wind component
+	float
+	    vw(record, levels_26, y, x);
+	    vw:long_name = "v wind component";
+	    vw:units = "meters/second";
+	    vw:valid_range = -300.f, 300.f;
+	    vw:_FillValue = -99999.f;
+	    vw:_n3D = 27;
+            vw:levels = "FHAG 10 MB 1000-900 by 25  MB 850-150 by 50 BL 0>30 30>60 60>90 90>120 120>150";
+        char
+            vwLevels(levels_26, charsPerLevel);
+        char
+            vwInventory(n_valtimes, levels_26);
+
+
+	//	pressure vertical velocity 
+	float
+	    pvv(record, levels_20, y, x);
+	    pvv:long_name = "Pressure vertical velocity";
+	    pvv:units = "Pa/s";
+	    pvv:valid_range = -40.f, 40.f;
+	    pvv:_FillValue = -99999.f;
+	    pvv:_n3D = 27;
+            pvv:levels = "MB 1000-900 by 25  MB 850-150 by 50";
+        char
+            pvvLevels(levels_20, charsPerLevel);
+        char
+            pvvInventory(n_valtimes, levels_20);
+
+	
+	// 	ETA Mean Sea Level Pressure
+  	float
+	    emsp(record, levels_1, y, x);
+	    emsp:long_name = "ETA Mean Sea Level Pressure";
+	    emsp:units = "Pascals";
+	    emsp:valid_range = 80000.f, 110000.f;
+	    emsp:_FillValue = -99999.f;
+	    emsp:_n3D = 0;
+            emsp:levels = "MSL";
+        char
+            emspLevels(levels_1, charsPerLevel);
+        char
+            emspInventory(n_valtimes, levels_1);
+
+
+        //      Total Cloud Cover
+        float
+            tcc(record, levels_1, y, x);
+            tcc:long_name = "Total Cloud Cover";
+            tcc:units = "percent";
+            tcc:valid_range = 0.f, 100.f;
+            tcc:_FillValue = -99999.f;
+            tcc:_n3D = 0;
+            tcc:levels = "EA";
+        char
+            tccLevels(levels_1, charsPerLevel);
+        char
+            tccInventory(n_valtimes, levels_1);
+
+
+        //      Helicity
+        float
+            heli(record, levels_1, y, x);
+            heli:long_name = "helicity";
+            heli:units = "meters/second squared";
+            heli:valid_range = -300.f, 300.f;
+            heli:_FillValue = -99999.f;
+            heli:_n3D = 0;
+            heli:levels = "FHAG 0>30";
+        char
+            heliLevels(levels_1, charsPerLevel);
+        char
+            heliInventory(n_valtimes, levels_1);
+
+	
+	// 	Convective Available Potential Energy at surface
+  	float
+	    cape(record, levels_2, y, x);
+	    cape:long_name = "Convective Available Potential Energy";
+	    cape:units = "J/kg";
+	    cape:valid_range = 0.f, 400.f;
+	    cape:_FillValue = -99999.f;
+	    cape:_n3D = 0;
+            cape:levels = "SFC BL 0>180";
+        char
+            capeLevels(levels_2, charsPerLevel);
+        char
+            capeInventory(n_valtimes, levels_2);
+	
+	
+	// 	Convective Inhibition at surface
+  	float
+	    cin(record, levels_2, y, x);
+	    cin:long_name = "Convective Inhibition";
+	    cin:units = "J/kg";
+	    cin:valid_range = 0.f, 400.f;
+	    cin:_FillValue = -99999.f;
+	    cin:_n3D = 0;
+            cin:levels = "SFC BL 0>180";
+        char
+            cinLevels(levels_2, charsPerLevel);
+        char
+            cinInventory(n_valtimes, levels_2);
+
+
+	 //	Convective precipitation
+	 float
+	    cp(record, levels_1, y,x);
+	    cp:long_name = "convective precipitation";
+	    cp:units = "Kg/M**2";
+	    cp:valid_range = 0.f, 1000.f;
+	    cp:_FillValue = -99999.f;
+	    cp:_n3D = 0;
+            cp:levels = "SFC";
+        char
+            cpLevels(levels_1, charsPerLevel);
+        char
+            cpInventory(n_valtimes, levels_1);
+
+
+        //      precipitable water
+        float
+            pw(record, levels_1, y, x);
+            pw:long_name = "precipitable water";
+            pw:units = "kg/m**2";
+            pw:valid_range = -300.f, 300.f;
+            pw:_FillValue = -99999.f;
+            pw:_n3D = 0;
+            pw:levels = "EA";
+        char
+            pwLevels(levels_1, charsPerLevel);
+        char
+            pwInventory(n_valtimes, levels_1);
+
+
+	//	Total Precipitation
+	float
+	    tp(record, levels_1, y,x);
+	    tp:long_name = "total precipitation";
+	    tp:units = "Kg/M**2";
+	    tp:valid_range = 0.f, 1000.f;
+	    tp:_FillValue = -99999.f;
+	    tp:_n3D = 0;
+            tp:levels = "SFC";
+        char
+            tpLevels(levels_1, charsPerLevel);
+        char
+            tpInventory(n_valtimes, levels_1);
+
+	    
+	//	forecast times
+        int
+            valtimeMINUSreftime(n_valtimes);
+            valtimeMINUSreftime:units = "seconds";
+
+
+	//	time the data is valid at
+	double	
+	    valtime(record);
+	    valtime:long_name = "valid time";
+	    valtime:units = "seconds since (1970-1-1 00:00:00.0)";
+
+	
+	//	reference time of the model
+	double	
+	    reftime(record);
+	    reftime:long_name = "reference time";
+	    reftime:units = "seconds since (1970-1-1 00:00:00.0)";
+
+	
+	//	nice name for originating center
+	char
+	    origin(namelen);
+
+	
+	//	nice name for model
+	char
+	    model(namelen);
+
+
+	//----------------------------------------------------------------------
+	//	navigation information
+	//----------------------------------------------------------------------
+
+     float
+         staticTopo(y, x) ;
+             staticTopo:units = "meters";
+             staticTopo:long_name = "Topography";
+             staticTopo:_FillValue = -99999.f;
+     float
+         staticCoriolis(y, x) ;
+             staticCoriolis:units = "/second";
+             staticCoriolis:long_name = "Coriolis parameter";
+             staticCoriolis:_FillValue = -99999.f;
+     float
+         staticSpacing(y, x) ;
+             staticSpacing:units = "meters";
+             staticSpacing:long_name = "Grid spacing";
+             staticSpacing:_FillValue = -99999.f;
+
+// global attributes:
+     :cdlDate = "20000222";
+
+     :depictorName = 
+"---------------------------------------------------------------------------";
+     :projIndex = 0 ;
+     :projName = 
+"------------------------------------------";
+     :centralLat = 0.f ;
+     :centralLon = 0.f ;
+     :rotation = 0.f ;
+     :xMin = 0.f ;
+     :xMax = 0.f ;
+     :yMax = 0.f ;
+     :yMin = 0.f ;
+     :lat00 = 0.f ;
+     :lon00 = 0.f ;
+     :latNxNy = 0.f ;
+     :lonNxNy = 0.f ;
+     :dxKm = 0.f ;
+     :dyKm = 0.f ;
+     :latDxDy = 0.f ;
+     :lonDxDy = 0.f ;
+
+   data:
+
+	origin 		= "NMC";
+	model 		= "WSEta";
+
+	// Forecast times(hrs) are: 0(Analysis),3,6,9,12,15,18,21,24,27,30,33,
+        //                          36,39,42,45,48;
+        valtimeMINUSreftime = 0, 10800, 21600, 32400, 43200, 54000, 64800,
+                              75600, 86400, 97200, 108000, 118800, 129600,
+			      140400, 151200, 162000, 172800;
+
+        // level meta data
+        ghLevels	= "MB 1000   ",
+                          "MB 975    ",
+                          "MB 950    ",
+                          "MB 925    ",
+                          "MB 900    ",
+                          "MB 850    ",
+                          "MB 800    ",
+                          "MB 750    ",
+                          "MB 700    ",
+                          "MB 650    ",
+                          "MB 600    ",
+                          "MB 550    ",
+                          "MB 500    ",
+                          "MB 450    ",
+                          "MB 400    ",
+                          "MB 350    ",
+                          "MB 300    ",
+                          "MB 250    ",
+                          "MB 200    ",
+                          "MB 150    ";
+        rhLevels	= "FHAG 2    ",
+                          "MB 975    ",
+                          "MB 950    ",
+                          "MB 925    ",
+                          "MB 900    ",
+                          "MB 850    ",
+                          "MB 800    ",
+                          "MB 750    ",
+                          "MB 700    ",
+                          "MB 650    ",
+                          "MB 600    ",
+                          "MB 550    ",
+                          "MB 500    ",
+                          "MB 450    ",
+                          "MB 400    ",
+                          "MB 350    ",
+                          "MB 300    ",
+                          "BL 0 30   ",
+                          "BL 30 60  ",
+                          "BL 60 90  ",
+                          "BL 90 120 ",
+                          "BL 120 150";
+        tLevels		= "FHAG 2    ",
+                          "MB 1000   ",
+                          "MB 975    ",
+                          "MB 950    ",
+                          "MB 925    ",
+                          "MB 900    ",
+                          "MB 850    ",
+                          "MB 800    ",
+                          "MB 750    ",
+                          "MB 700    ",
+                          "MB 650    ",
+                          "MB 600    ",
+                          "MB 550    ",
+                          "MB 500    ",
+                          "MB 450    ",
+                          "MB 400    ",
+                          "MB 350    ",
+                          "MB 300    ",
+                          "MB 250    ",
+                          "MB 200    ",
+                          "MB 150    ",
+                          "BL 0 30   ",
+                          "BL 30 60  ",
+                          "BL 60 90  ",
+                          "BL 90 120 ",
+                          "BL 120 150";
+        dptLevels       = "FHAG 2    ",
+                          "MB 1000   ",
+                          "MB 975    ",
+                          "MB 950    ",
+                          "MB 925    ",
+                          "MB 900    ",
+                          "MB 850    ",
+                          "MB 800    ",
+                          "MB 750    ",
+                          "MB 700    ",
+                          "MB 650    ",
+                          "MB 600    ",
+                          "MB 550    ",
+                          "MB 500    ",
+                          "MB 450    ",
+                          "MB 400    ",
+                          "MB 350    ",
+                          "MB 300    ",
+                          "MB 250    ",
+                          "MB 200    ",
+                          "MB 150    ",
+                          "BL 0 30   ",
+                          "BL 30 60  ",
+                          "BL 60 90  ",
+                          "BL 90 120 ",
+                          "BL 120 150";
+        uwLevels	= "FHAG 10   ",
+                          "MB 1000   ",
+                          "MB 975    ",
+                          "MB 950    ",
+                          "MB 925    ",
+                          "MB 900    ",
+                          "MB 850    ",
+                          "MB 800    ",
+                          "MB 750    ",
+                          "MB 700    ",
+                          "MB 650    ",
+                          "MB 600    ",
+                          "MB 550    ",
+                          "MB 500    ",
+                          "MB 450    ",
+                          "MB 400    ",
+                          "MB 350    ",
+                          "MB 300    ",
+                          "MB 250    ",
+                          "MB 200    ",
+                          "MB 150    ",
+                          "BL 0 30   ",
+                          "BL 30 60  ",
+                          "BL 60 90  ",
+                          "BL 90 120 ",
+                          "BL 120 150";
+        vwLevels	= "FHAG 10   ",
+                          "MB 1000   ",
+                          "MB 975    ",
+                          "MB 950    ",
+                          "MB 925    ",
+                          "MB 900    ",
+                          "MB 850    ",
+                          "MB 800    ",
+                          "MB 750    ",
+                          "MB 700    ",
+                          "MB 650    ",
+                          "MB 600    ",
+                          "MB 550    ",
+                          "MB 500    ",
+                          "MB 450    ",
+                          "MB 400    ",
+                          "MB 350    ",
+                          "MB 300    ",
+                          "MB 250    ",
+                          "MB 200    ",
+                          "MB 150    ",
+                          "BL 0 30   ",
+                          "BL 30 60  ",
+                          "BL 60 90  ",
+                          "BL 90 120 ",
+                          "BL 120 150";
+        pvvLevels	= "MB 1000   ",
+                          "MB 975    ",
+                          "MB 950    ",
+                          "MB 925    ",
+                          "MB 900    ",
+                          "MB 850    ",
+                          "MB 800    ",
+                          "MB 750    ",
+                          "MB 700    ",
+                          "MB 650    ",
+                          "MB 600    ",
+                          "MB 550    ",
+                          "MB 500    ",
+                          "MB 450    ",
+                          "MB 400    ",
+                          "MB 350    ",
+                          "MB 300    ",
+                          "MB 250    ",
+                          "MB 200    ",
+                          "MB 150    ";
+        emspLevels 	= "MSL       ";
+        tccLevels       = "EA        ";
+        heliLevels      = "FHAG 0 30 ";
+        capeLevels      = "SFC       ",
+                          "BL 0 180  ";
+        cinLevels       = "SFC       ",
+                          "BL 0 180  ";
+        cpLevels 	= "SFC       ";
+        pwLevels        = "EA        ";
+        tpLevels 	= "SFC       ";
+}
+
+

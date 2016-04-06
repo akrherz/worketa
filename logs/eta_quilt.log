@@ -1,0 +1,35 @@
+    0
+  num_procs =             1
+  task id, jsta, end =             0            0            0
+ ipe,MY_IS_GLB,MY_IE_GLB,MY_JS_GLB, MY_JE_GLB =            0            1 
+           75            1          121
+  ME, MY_ISD,MY_IED,MY_JSD,MY_JED =             0            1           75 
+            1          121
+ NHB read, SIGMA=   F
+            0            1            0
+ kpath=            50
+ krst=            14
+  IRECL, FNAME =      15204352 
+ restrt00.quilt                                                                  
+ reading from LRSTRT1             0
+ RUN,IDAT,IHRST,NTSD=   T            4           24         2001            0 
+            1
+ sigma=   F
+ decoaled that spline is:   F
+ calling regular slp            12
+ to NHB file 
+ from NHB file:            13           16    30.00000                2  F
+ LMH,LMV sample:            34           34
+ past NHB reads
+ STDRD pre MPI_BCAST   F
+ STDRD post MPI_BCAST   F
+ to this if test on ME, ME=             0
+ right here, NO_REDUCE=   F
+  STDRD check...goto 400   F
+ leaving 4
+ back from SLP
+ extremes in pslp:     2500.000        2500.200    
+ kpath=            50
+ krst=             8
+  tot_tim=    42.90000    
+              STOP_QUILT

@@ -1,0 +1,45 @@
+Executing eta_convert.csh - Tue Apr 24 00:01:33 CDT 2001
+ 
+#############################################################
+############ Let the Conversion Script Begin ################
+### Starting ETA_CONVERT -  Tue Apr 24 00:01:33 CDT 2001 ####
+ 
+  Running the ETA post processor on the following raw 
+  Workstation ETA files:
+ 
+    restrt00.quilt
+ 
+  Running quilt.exe to compute sea level pressure.
+  Output can be found in /home/models/iowaeta/worketa/logs/eta_quilt.log
+ 
+  Done! - quilt.exe was successful.
+ 
+ 
+  Running etapost.exe
+  Output can be found in /home/models/iowaeta/worketa/logs/eta_post.log
+ 
+  Done! - etapost.exe was successful.
+ 
+  Running the COPYGB program to change grid navigation to LMBC
+  Output can be found in /home/models/iowaeta/worketa/logs/copygb.log
+ 
+    Creating final GRIB file: 01042400.GrbF00
+ 
+  Writing the GRIB data to GEMPAK file: 01042400_wseta.gem
+  Output can be found in /home/models/iowaeta/worketa/logs/gempak.log
+ 
+ 
+############# Conversion Script Completed ###################
+### ETA_CONVERT Completed - Tue Apr 24 00:03:40 CDT 2001 ####
+#############################################################
+ 
+sleeping 1200 seconds Zzzzzzzzz
+ 
+Executing eta_convert.csh - Tue Apr 24 00:23:41 CDT 2001
+There were no restart files found - EXIT
+ 
+sleeping 1200 seconds Zzzzzzzzz
+ 
+ 
+Exiting eta_autoconvert.csh - Tue Apr 24 00:23:41 CDT 2001
+ 

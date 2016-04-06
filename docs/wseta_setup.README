@@ -1,0 +1,297 @@
+
+II.       SETTING UP THE SOO/STRC WORKSTATION Eta
+
+PART A:   Preparing your system for installing the WS Eta for  the
+first time.
+
+
+1)   Create an "eta" user account.
+
+Although  this step is not necessary, it is generally a good  idea
+to  create a separate user account for the WS Eta if the model  is
+going  to be used by more one person.  I suggest that you use  the
+name  "eta" for this account.  Creating a separate WS Eta  account
+and assigning ownership of the model code and executables to "eta"
+avoids potential security and use issues.  You DO NOT have to  use
+"eta"  for  the  user name.  If you wish to use an alternate  name
+then  simply  replace "eta" with your moniker of choice  in  these
+directions.
+
+Use  the  appropriate sys admin tool to create user "eta"  and  be
+sure  to  give  it  a  good password. As part of  the  process  of
+creating the user, you will be asked to choose an environment.  Be
+sure to select the C-Shell (/bin/csh) for the WS Eta environment.
+
+
+2)   Configure user "eta"'s home directory.
+
+When  you  create the eta model user, it will be assigned  a  home
+directory,  most likely in /home/eta. Remember this,  because  you
+will  need  the  location  later. As root,  cd  to  the  eta  home
+directory, and check it's ownership:
+
+     #  cd ~eta
+     #  ls -lsa
+
+Look for the entry with the "." in the far right column:
+
+     3 drwxr-xr-x 2  root  bin  1048 Dec 08 23:53 .
+
+If the user name is "root" (as shown above), change it to "eta":
+
+     #  chown -R eta:users ~eta
+
+If  the  user  name  is already "eta", you don't  need  to  change
+anything.
+
+
+3)   Log into your workstation as user "eta".
+
+The  WS Eta package requires a lot of disk space, roughly 500  MB.
+In  order to support this large distribution, I recommend that you
+install it on one of your external disk drives and not in the user
+“eta”  home  directory.  For example, you might choose to  install
+the  WS  Eta  software in /usr1.  Even though user "eta"  will  be
+doing the installation, we don't want to install WS Eta in the eta
+home  directory  (/home/eta) as there may not be enough  space  to
+install everything on that partition.
+
+Create  a directory on one of your external hard drives.  You  may
+call it anything you like; however I suggest calling it "worketa2.0".
+For the rest of the installation, I will assume that you've chosen
+to  install  the software in the "/usr1/worketa2.0"  directory.   If
+your  distribution is to be installed in another location,  simply
+replace "/usr1/worketa2.0" with the correct path on your machine.
+
+Note  that  if  you  don't install the WS Eta  under  the  worketa
+directory  you will have to make a few minor changes to  the  run-
+time  scripts.  Save  yourself  the  trouble  and  just  name  the
+directory "worketa", or contact me for help.
+
+You  may  need to be root to create the /usr1/worketa2.0  directory.
+Here's how:
+
+     #  su
+     #  mkdir /usr1/worketa2.0
+     #  chown eta:users /usr1/worketa2.0
+     #  ln -s /usr1/worketa2.0 /usr1/worketa
+     #  exit
+
+Note  that you have changed the ownership of /usr1/worketa2.0 to user
+worketa. Make sure that you have at least 500 MB free on the  disk
+/usr1. (on HPUX, use the "bdf" command to see your available  disk
+space, "df -k" under LINUX.) There is now a link from worketa to the
+current version of the model (worketa2.0).
+
+Now create a symbolic link from the eta home directory, /home/eta,
+to  the location of the /usr1/worketa  directory. This will  allow
+you  to login as user "eta" and then easily change directories  to
+the location where the model is run.
+
+     #  cd ~eta     (cd /home/eta)
+     #  ln -s /usr1/worketa   worketa
+
+You  will  now  see  a  file  called "worketa"  in  the  /home/eta
+directory.
+
+You are now ready to install the WS Eta distribution!
+
+
+
+PART B:   Installing and building the WS Eta
+
+1)   Log in as user eta.
+
+     If you have a pre-existing WS Eta distribution, rename the
+     top level of the distribution worketa1.1 from worketa.
+
+     create a
+
+2)   Download  the distribution and data files from the  SOO/STRC
+     ftp site.
+
+All  of the files necessary to set up the model are located in the
+worketa  directory on the SOO/STRC ftp site.  If you do not  know,
+or  do  not remember the address and account information for  this
+server, please contact me.
+
+There are 3 files that make up the WS Eta distribution and 1 to be
+used  in  the  user "eta" account. However, you must decide  which
+combination of files is appropriate for you.  Choose one file from
+each of the following groups:
+
+User eta files:
+
+wsetadir.tar.Z           The   wsetadir.tar.Z  file  contains  the
+                         .cshrc,  Common.cshrc, and Common.aliases
+                         to be used by user “eta”.
+The distribution:
+
+worketa_soosac_*.tar.Z   WS  Eta  source distribution for both  HP
+                         and  LINUX workstations. The splat,  "*",
+                         refers  to  a  particular version  and/or
+                         patch level.
+
+worketa_topo.tar.Z       WS Eta topography dataset
+
+worketa_sfc_HP.tar.Z     WS Eta static surface files for HPUX
+worketa_sfc_LINUX.tar.Z  WS Eta static surface files for LINUX
+
+
+Binary distributions
+
+If  you  do not have a compiler, you need to download a 4th  file.
+With   the   SOO/STRC  WS  Eta  package,  a  variety   of   binary
+distributions are provided for both LINUX and HPUX.   The  ability
+to  run  a  particular configuration will depend on  you  computer
+resources.   Note that the LINUX binaries were built on  an  INTEL
+machine  running Redhat 6.2, Kernel 2.2.14. The HP  binaries  were
+built  on an HP C3000 running HPUX 10.20. These files can be found
+in  the  worketa/binary directory on the SOO/STRC  ftp  site.  The
+files are:
+
+worketa_bin_HPUX_##x##.tar.Z  WS  Eta binary distribution for HPUX
+                              at ## by ## horizontal grid points.
+
+worketa_bin_LINUX_##x##.tar.Z WS Eta binary distribution for LINUX
+                              at ## by ## horizontal grid points.
+
+                              Note there are separate sets of binaries
+                              for multi-CPU systems
+
+Note   that   the  horizontal  grid  dimensions  of   the   binary
+distributions were created so that the computational model  domain
+has a 2 to 3 lat/lon ratio.
+
+3)   Install the WS Eta distribution
+
+First, unpack the wsetadir.tar.Z file in the top level of the user
+eta account.
+     % mv wsetadir.tar.Z ~eta
+     % cd ~eta
+     % zcat wsetadir.tar.Z | tar xvf -
+
+If  you used something other than /usr1/worketa for the top  level
+of  the  WS  Eta  distribution, then you will  have  to  edit  the
+Common.cshrc  file and change the default setting  of  the  WS_ETA
+environmental  variable  for  your  OS.   If  you  plan  on  using
+NAWIPS/GEMPAK to view the model output, you will also have to edit
+the NAWIPS environmental variable.
+
+If they are not already located in the top level WS Eta directory,
+move  the  WS Eta files to the /usr1/worketa directory and  unpack
+them. The following example is for a LINUX system:
+
+     % mv  worketa_soosac_*.tar.Z  /usr1/worketa
+     % mv  worketa_topo.tar.Z      /usr1/worketa
+     % mv  worketa_sfc_LINUX.tar.Z /usr1/worketa
+
+Now unpack the files
+     % zcat worketa_soosac_*.tar.Z | tar xvf -
+     % zcat worketa_sfc_HP.tar.Z   | tar xvf -
+     % zcat worketa_topo.tar .Z    | tar xvf -
+
+And the binary distribution if necessary:
+
+     % zcat worketa_bin_LINUX_##x##.tar.Z   | tar xvf -
+
+
+4)   WS Eta environmental variables
+
+The  $WS_Eta/Eta.cshrc  file is used to  set  up  the  environment
+needed  by  the WS Eta. It is sourced automatically when  you  log
+into  the  user "eta" account, provided you have the  location  of
+WS_Eta  correctly defined in your Common.cshrc and you are running
+C-Shell (/bin/csh).  Other users who want to run the WS Eta should
+also  source  this  file.   It  is  not  necessary  to  edit   the
+$WS_Eta/Eta.cshrc file unless you want to run the  model  on  more
+than 1 CPU.
+
+5)   Running on multi-CPU workstations
+
+Note:   You  do not need to change anything in the Eta.cshrc  file
+unless  you have a milti-CPU machine and want to run the model  on
+more  than 1 processor.  If you have a multi-CPU workstation,  you
+will  need  to  change the NCPUS variable near the bottom  of  the
+Eta.cshrc file.
+
+Change:
+
+     setenv    NCPUS     1
+to
+     setenv    NCPUS     2
+
+
+After modifying these files, log out and back in as user "eta".
+
+
+PART C:   Building the WS Eta executables
+
+1)   A note on compilers
+In  order to compile the WS Eta locally, you will need ANSI-C  and
+F90 compilers. On LINUX systems, the gnu C (gcc) compiler is ANSI-
+compatible, but you will need to purchase an f90 compiler  from  a
+third  party  source.  On HP systems, you will have  to  buy  both
+compilers separate from the bundled OS.
+
+If  you do not f90 and ansi-C compilers, stop reading now and load
+the binary distribution provided for your machine. If you have the
+compilers, read on
+
+The  last  task  that  you must attend to is  building  the  model
+libraries  and  executables.   The  model  run-time  scripts   are
+designed to automatically recompile the executables each time  the
+grid  dimensions  are changed (See eta_run.csh).   The  discussion
+below  details  how to manually recompile the model.  If  you  are
+planning  to  compile  the model locally,  you  must  include  the
+location of the F90 and C compilers in the user "eta"'s path.
+
+The  model default settings are for a 55x91x45 model domain (55x91
+horizontal  grid  points by 45 vertical levels)  unless  you  have
+installed  a  binary distribution.  You may choose to change  this
+now or wait until you edit the run-time scripts.
+I would wait to change the grid size in eta_run.csh.
+
+The  configuration files for compiling the model  are  located  in
+$WS_ETA/src/config directory.  If you are running the WS Eta on  a
+HP there is no need to edit the Makeinc.hpux file. However, if you
+have  a  linux  system, you may need to modify  the  Makeinc.linux
+depending on your compiler and/or number of CPUs on your  machine.
+The  distribution of the WS Eta is pre-configured to compile  with
+the  Portland Group Fortran 90 compiler version 3.0.4  or  higher.
+If you have the ABSOFT F90 compiler, you must make the changes.
+
+To compile (Everybody):
+
+     %    cd $WS_Eta
+
+You  should now be located at the top level of the SOO/STRC WS Eta
+distribution.
+
+     %    make clobber  -  This step cleans the entire distribution
+     %    make >& make.out &
+
+This  will begin the Make process and send all the output  to  the
+"make.out" file.
+
+     %    tail -f make.out
+
+Note that is you get errors to the effect that the make file can't
+find the compilers you will have to add them to your path.
+
+You  can  now  watch  the all the libraries and executables  being
+built.  Do  a  ctrl-C (^c) to exit out of "tail -f make.out".  The
+"make"  is  run  in the background so it should go to  completion.
+When it is done, look through the "make.out" for "failed", "exit",
+or  any other verbiage that may indicate a problem.  If there  are
+problems - call me.
+
+CONGRATULATIONS!  YOU ARE DONE.
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Robert A. Rozumalski          NWS National SOO/STRC Coordinator
+		              Robert.Rozumalski@noaa.gov
+COMET/UCAR PO Box 3000        Phone:    (303) 497-8356
+Boulder, CO 80307-3000        FAX:      (303) 497-8491
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+

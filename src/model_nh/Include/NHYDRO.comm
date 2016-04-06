@@ -1,0 +1,10 @@
+      LOGICAL HYDRO,SPLINE
+C
+                              C O M M O N /NHYDRO/
+     & HYDRO,SPLINE
+     &,DWDT(IDIM1:IDIM2,JDIM1:JDIM2,LM)
+     &,PINT(IDIM1:IDIM2,JDIM1:JDIM2,LM+1)
+     &,W(IDIM1:IDIM2,JDIM1:JDIM2,LM+1)
+     &,Z(IDIM1:IDIM2,JDIM1:JDIM2,LM+1)
+     &,PDWDT(IDIM1:IDIM2,JDIM1:JDIM2,LM)
+!-----------------------------------------------------------------------

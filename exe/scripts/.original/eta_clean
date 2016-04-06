@@ -1,0 +1,240 @@
+#!/bin/csh 
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+#                                                                       #
+#  ETA_CLEAN                                                            #
+#                                                                       #
+#  This simple script returns the SOO/SAC WS ETA distribution to        #
+#  varying degrees of a clean, original state.                          #
+#                                                                       #
+#  R.Rozumalski - 05/00    Version 1.1 - Initial Release                #
+#  R.Rozumalski - 03/01    Version 2.0                                  #
+#                                                                       #
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+unalias rm
+unalias cd
+
+#  Define the ETA_HOME directory again, just to make sure             
+#
+env | grep WS_ETA >& /dev/null
+if ( $status != 0 ) then
+    echo WS_ETA is not defined.
+    exit 99
+endif
+
+if ( -e $WS_ETA/ETA.cshrc  ) then
+   source $WS_ETA/ETA.cshrc
+else
+   echo "ERROR: $WS_ETA/ETA.cshrc is not found."
+   echo "       Go find it and try again."
+   echo " "
+   exit 99
+endif
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#
+echo " "
+
+set nice  = NULL
+if ( $#argv == 2 ) then
+   if ( $argv[1] == "-n" ) then
+      set nice = $argv[$#argv]
+      if ( $nice > 4 || $nice < 0 ) set nice = NULL
+   endif
+endif
+
+if ( $#argv != 2 || $nice == NULL ) then
+   echo " % eta_clean -n [ 0 1 2 3 4 ]"
+   echo " "
+   echo "   Where: "
+   echo "          0 - Just the WS Eta files in $ETA_TMP."
+   echo " "
+   echo "          1 - Return the run_time directory pre-run state."
+   echo " "
+   echo "          2 - Return the run_time directory pre-download state"
+   echo "              but do not delete downloaded grib data."
+   echo " "
+   echo "          3 - Return the configuration to pre-download state"
+   echo "              and delete all grib data."
+   echo " "
+   echo "          4 - Return the distribution to original state and"
+   echo "              deleteing executables and post process data."
+   echo " "
+   exit 99
+endif
+
+echo " "
+echo "%%%% Running eta_clean with value of $nice %%%%"
+
+if ( $nice == "1" ) then
+
+   cd $ETA_RUN
+   echo " "
+   echo "     Returning the run_time directory pre-run state"
+   echo " "
+
+   ls -a >& /dev/null
+   if ( $status == 0 ) then
+      set files = `ls -a`  >& /dev/null
+      foreach file ($files)
+         if ( (! -d $file) && ($file != this_run) ) rm -f $file
+      end
+   endif
+
+   ln -s ../exe/scripts/eta_autorun.csh     eta_autorun.csh     >& /dev/null
+   ln -s ../exe/scripts/eta_convert.csh     eta_convert.csh     >& /dev/null
+   ln -s ../exe/scripts/eta_download.csh    eta_download.csh    >& /dev/null
+   ln -s ../exe/scripts/eta_run.csh         eta_run.csh         >& /dev/null
+
+endif
+
+if ( $nice == "2" ) then
+
+   cd $ETA_RUN
+   echo " "
+   echo "     Returning the run_time directory pre-run state"
+   echo "     but not deleting downloaded GRIB data."
+   echo " "
+
+   ls -a >& /dev/null
+   if ( $status == 0 ) then
+      set files = `ls -a`  >& /dev/null
+      foreach file ($files)
+         if ( ! -d $file ) rm -f $file
+      end
+   endif
+
+   ln -s ../exe/scripts/eta_autorun.csh     eta_autorun.csh     >& /dev/null
+   ln -s ../exe/scripts/eta_convert.csh     eta_convert.csh     >& /dev/null
+   ln -s ../exe/scripts/eta_download.csh    eta_download.csh    >& /dev/null
+   ln -s ../exe/scripts/eta_run.csh         eta_run.csh         >& /dev/null
+
+endif
+
+if ( $nice == "3" ) then
+
+   echo " "
+   echo "     Returning the configuration to pre-download state."
+   echo " "
+   echo "     Deleting all grib and ETA-ready data in $ETA_PREP"
+   echo " "
+
+   cd $ETA_DATA/eta_prep
+   echo "     Cleaning all files from $ETA_DATA/eta_prep"
+   echo " "
+   ls -a >& /dev/null
+   if ( $status == 0 ) then
+      set files = `ls -a`  >& /dev/null
+      foreach file ($files)
+         if ( $file != "." && $file != ".." ) rm -f $file
+      end
+   endif
+
+   ls -a imssnow.grb snowdepth.grb sstgrb sstgrb.index gdsinfo.* rtg_sst_grb_0.5  >& /dev/null
+   if ( $status == 0 ) then
+      set files = `ls -a imssnow.grb snowdepth.grb sstgrb sstgrb.index gdsinfo.* rtg_sst_grb_0.5`  >& /dev/null
+      foreach file ($files)
+         if ( $file != "." && $file != ".." ) rm -f $file
+      end
+   endif
+ 
+   cd $ETA_RUN
+   ls -a >& /dev/null
+   if ( $status == 0 ) then
+      set files = `ls -a`  >& /dev/null
+      foreach file ($files)
+         if ( $file != "." && $file != ".." ) rm -fr $file
+      end
+   endif
+
+   ln -s ../exe/scripts/eta_autorun.csh     eta_autorun.csh     >& /dev/null
+   ln -s ../exe/scripts/eta_convert.csh     eta_convert.csh     >& /dev/null
+   ln -s ../exe/scripts/eta_download.csh    eta_download.csh    >& /dev/null
+   ln -s ../exe/scripts/eta_run.csh         eta_run.csh         >& /dev/null
+
+endif
+
+if ( $nice == "4" ) then
+
+   echo " "
+   echo "     Returning distribution to original, just out of the box condition."
+   echo " "
+
+   cd $ETA_TMP
+   if ( -e eta_crash ) rm -fr eta_crash >& /dev/null
+
+   cd $WS_ETA
+   echo "     Executing - make clobber from $WS_ETA directory"
+   echo " "
+   if ( ! -e $ETA_EXE/.lock ) then
+       make clobber  >& /dev/null
+   else
+      echo "     WARNING:  a .lock file exists in your $ETA_EXE "
+      echo "               directory indicating that this is a binary distribution."
+      echo "               is you still want to delete the executables in this"
+      echo "               directory then delete the .lock file and rerun this "
+      echo "               script again."
+      echo " "
+   endif
+
+   cd $ETA_SCRIPTS
+   cp -f .origonal/* . >& /dev/null
+
+   cd $ETA_DATA
+   set files = `ls -a`   >& /dev/null
+   foreach file ($files)
+      if ( $file != "."   && $file != ".." && $file != sfc && \
+           $file != const && $file != topo && $file != eta_prep  ) rm -fr $file
+   end
+
+   cd $ETA_DATA/eta_prep
+   echo "     Cleaning all files from $ETA_DATA/eta_prep"
+   echo " "
+   ls -a >& /dev/null
+   if ( $status == 0 ) then
+      set files = `ls -a`  >& /dev/null
+      foreach file ($files)
+         if ( $file != "." && $file != ".." ) rm -f $file
+      end
+   endif
+
+   ls -a imssnow.grb snowdepth.grb sstgrb sstgrb.index >& /dev/null
+   if ( $status == 0 ) then
+      set files = `ls -a imssnow.grb snowdepth.grb sstgrb sstgrb.index`  >& /dev/null
+      foreach file ($files)
+         if ( $file != "." && $file != ".." ) rm -f $file
+      end
+   endif
+
+   cd $ETA_RUN
+   ls -a >& /dev/null
+   if ( $status == 0 ) then
+      set files = `ls -a`  >& /dev/null
+      foreach file ($files)
+         if ( $file != "." && $file != ".." ) rm -fr $file
+      end
+   endif
+
+   ln -s ../exe/scripts/eta_autorun.csh     eta_autorun.csh     >& /dev/null
+   ln -s ../exe/scripts/eta_convert.csh     eta_convert.csh     >& /dev/null
+   ln -s ../exe/scripts/eta_download.csh    eta_download.csh    >& /dev/null
+   ln -s ../exe/scripts/eta_run.csh         eta_run.csh         >& /dev/null
+
+endif
+
+cd $ETA_TMP
+echo "     Cleaning all log files from $ETA_TMP"
+echo " "
+
+ls *.log ftp* >& /dev/null
+if ( $status == 0 ) then
+   set files = `ls *.log ftp* *_lock` >& /dev/null
+   rm -f $files
+else
+   echo " "
+endif
+echo " "
+echo "%%%% That is all folks %%%%"
+echo " "
+exit 0
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%#

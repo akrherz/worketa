@@ -1,0 +1,64 @@
+####################################################################
+####################################################################
+#  Makeinc.include - NWS R.Rozumalski (12/99) 
+#
+# NOTE:  This file is included by the:
+#        $(WS_ETA)/src/config/Makeinc.common
+#
+#################################################################
+# 
+#
+#  Special definitions for compiling/linking/etc
+
+INSTALL = cp -f
+RANLIB  = :
+
+#
+#  The ansi-c compiler
+#  C Options include: -O optimization; -p profiling; -g debugging 
+# -Aa ANSI Compiling (NOTE:options only available in unbundled C cmplr)
+
+#  NOTE THE DIFFERENT OPTIMIZATION LEVELS: +O{optlevel}
+
+CC 	= gcc
+CFLAGS  = 
+
+# THE FOLLOWING COMPILER DEFINITIONS ARE FOR THE PORTLAND GROUP COMPILERS
+
+# Dual CPU systems (Portland Group)
+#F90	 = pgf90
+#COMP     = -DLINUX_PGC
+#MFOPT    = -fast -Mconcur
+#SFOPT    = -O -fast
+#FFLAGS   = $(MFOPT)
+
+# Single CPU systems (Portland Group)
+F90      = pgf90
+COMP     = -DLINUX_PGC
+MFOPT    = -fast -Mconcur
+SFOPT    = -O  -fast
+FFLAGS   = $(SFOPT)
+
+
+# ABSOFT compiler options
+#COMP     = -DLINUX_ABS
+#F90      = f90
+#SFOPT    = -O -s -lU77 
+#FFLAGS   = $(SFOPT)
+
+# VAST compiler options
+#COMP     = -DLINUX_ABS
+#F90      = pf90
+#SFOPT    = -O -s
+#FFLAGS   = $(SFOPT)
+
+##  Define compile,link,archive, & remove variables 
+##  (leave as is)
+##
+ANSI      = -ansi
+FFLAGSA   = $(FFLAGS)
+CFLAGS    = $(COPT) $(ANSI)
+COMPILE.f = $(FC) $(FFLAGS)  -c
+LINK.f    = $(FC) $(FFLAGS)
+COMPILE.c = $(CC) $(CFLAGS)  -c
+LINK.c	  = $(CC) $(LDFLAGS)

@@ -1,0 +1,3 @@
+C-------------------------------------------------------------
+C***  SET PRIMARY GRID DIMENSIONS AND PRESSURE OUTPUT LEVELS
+      PARAMETER (IM=55,JM=91,LM=45,LSM=18)

@@ -1,0 +1,197 @@
+
+VI.  Configuring WorkStation ETA Output on local AWIPS systems
+
+Original Notes by Greg Mann and Preston Leftwich
+Edited by John Eise (SOO/MKX)
+Minor embellishments by Robert Rozumalski
+
+Editor’s Note: These instructions are to be used for the SOO/STRC
+Workstation ETA only. Additional configuration information can be
+found in eta_convert.csh and configuration files that are located
+in $WS_ETA/util/awips
+
+There are 2 tasks that you must accomplish before displaying data
+in AWIPS;
+
+     1)   Configure and localize your AWIPS system to recognize 
+          the WS Eta model data and
+
+     2)   Get the WS Eta model data into AWIPS.
+
+Each  of  these  tasks  will  be addressed  independently  below;
+however, before you go any further, make sure you have run the WS
+Eta  model  several  times and are happy with  the  computational
+domain  (number of grid points and grid navigation).  You  should
+also  execute  the WS Eta in real-time to get the timing  of  the
+entire  process down to the point where the data are of value  to
+the  forecasters.  You can view the data in NAWIPS while you  are
+finalizing  the model configuration. These steps  will  save  you
+from  have to reconfiguring AWIPS over and over again;  but  then
+again, practice makes perfect.
+
+Once  you are happy with the model runs you will need to get  the
+grid  navigation for your domain.  This information is  available
+from either the $ETA_TMP/gempak.log file or by running the GEMPAK
+program gdinfo on the file that was created when you set NAWIPS =
+yes     in     eta_convert.csh     (YYMMDDHH_wseta.gem).       In
+$ETA_TMP/gempak.log   you   are   looking   for   the   following
+information:
+
+GRID NAVIGATION:
+     PROJECTION:    LCC
+     ANGLES:        41.7 -94.0 41.7
+     GRID SIZE:     109  91             (NX, NY)
+     LL CORNER:     37.10     -100.38
+     UR CORNER:     45.84     -86.16
+
+The  above data is specific to the benchmark case and may not  be
+the same for your domain.  You want to note the following values.
+Those  on  the  right hand side of each box are  taken  from  the
+benchmark case above as an example.
+
+____________________________________________________________
+                     |Latitude (DD.dd) |Longitude (-DDD.dd) |
+_____________________|_________________|____________________|
+Grid Center          |(1)        41.70 |(2)          -94.00 |
+_____________________|_________________|____________________|
+Southwest Lat/Lon    |(3)        37.10 |(4)         -100.38 |
+_____________________|_________________|____________________|
+Northeast Lat/Lon    |(5)        45.84 |(6)          -86.16 |
+_____________________|_________________|____________________|
+Grid  Dimensions     |(7)          109 |(8)              91 |
+______(NXxNY)________|_________________|____________________|
+
+Find  the data for your domain and enter the values in the  table
+above.
+
+Now  armed and dangerous with the necessary information, you  may
+proceed.
+
+1)   Configure and localize your local AWIPS system
+
+Configure AWIPS
+
+     a.   Begin by logging into any AWIPS workstation as ROOT.
+
+          #    su fxa
+          #    rlogin ds1
+
+     b.   As user fxa on ds1, create a directory where  the
+          WS Eta NetCDF files will reside on your AWIPS system:
+
+          %    mkdir /data/local/WsEta
+          %  ln -–s /data/local/WsEta /data/fxa/Grid/SBN/NetCDF/LOCAL/WsEta
+
+     c.   Now  get the wsEta.cdl file from the $WS_ETA/util/awips
+          directory and copy it into the /data/fxa/customFiles directory on
+          ds1.  You will now have to do some minor editing of this file.
+          Using the NX and NY values, (7) and (8) from the table above,
+          edit   the   X   and   Y  dimension  specification   in
+          /data/fxa/customFiles/wsEta.cdl with your values:
+
+          x    =  (7);        //x dimension
+          y    =  (8);        //y dimension
+     
+
+     d.   Run “maksuparg” to create a wsEta.sup file  using
+          the  grid  navigation values from your  domain  in  the
+          table above:
+
+          %  maksuparg 3 (1) (2) (1) wsEta.sup l (3) (4) (5) (6)
+                                   (lower case L, not a 1)
+
+          % cp  wsEta.sup /awips/fxa/data/localizationDataSets/{siteID}
+
+     e.   Edit the /awips/fxa/bin/fxa-data.purge file
+
+          %    cd  /awips/fxa/bin
+          %    cp  fxa-data.purge  fxa-data.purge.orig
+          %    chmod +w  fxa-data.purge
+
+     Now  edit the fxa-data.purge file and add the following line
+     to  the  end  of the grid section (look for Grid/SBN,  right
+     before the satellite data).
+
+          purge_dir Grid/SBN/NetCDF/LOCAL/WsEta  2
+
+          %    chmod -w  fxa-data.purge
+
+
+Localize your local AWIPS system
+
+     Execute the following on ds1
+
+          %    cd /awips/fxa/data/localization/scripts
+          %    ./mainScript.csh    -grids
+          %    stopIngest.ds1
+          %    startIngest.ds1
+
+     Execute the following on as1
+
+          %    cd /awips/fxa/data/localization/scripts
+          %    ./mainScript.csh    -grids
+          %    stopNotificationServer
+          %    startNotificationServer
+
+     Execute the following on each workstation
+
+          %    rlogin ws#
+          %    cd /data/fxa/customFiles
+          %    cp wsEta.sup /awips/fxa/data/localizationDataSets/{siteID}/
+          %    cd  /awips/fxa/data/localization/scripts
+          %    ./mainScript.csh    -grids
+
+AWIPS configuration completed!
+
+
+2)   Getting your WS Eta model data into AWIPS
+
+  There are different 3 proceedures that you can use to get  your
+  WS  Eta model data into AWIPS. Two of these methods may be used
+  if  you  are running the model outside the AWIPS firewall.  The
+  other is used when running the WS Eta inside the AWIPS LAN.
+
+     a.   Running the model outside the AWIPS LAN
+
+     As  stated  above,  there are 2 ways of getting  your  local
+     model  data into AWIPS from outside the AWIPS LAN. The first
+     involves  running  the  get_grib.csh script  on  a  separate
+     machine   INSIDE  the  AWIPS  firewall.  This  script   runs
+     independently of the WS Eta model run-time scripts and  FTPs
+     the processed model GRIB files from the modeling workstation
+     outside  the  firewall, and then uses remote copy  (rcp)  to
+     push  the data onto ds1 to processing NetCDF.  You will need
+     to  edit and install the get_grib.csh and .rhosts files from
+     the  $WS_ETA/util/awips directory on the  non-AWIPS  machine
+     inside  the  LAN.  More information  may  be  found  in  the
+     $WS_ETA/util/awips/get_grib.csh file if you  plan  on  using
+     this proceedure
+     
+     The  second means involves a simple ftp of the WS  Eta  GRIB
+     files directly to LDAD as they are being created and placing
+     them  into the /data/Incoming directory for processing  into
+     NetCDF  format.   This  method  has  been  added  into   the
+     eta_convert.csh (AWIPS = FTP) script and requires a  minimum
+     amount     of     configuration.     Please     see      the
+     $ETA_RUN/eta_convert.csh for more information.
+     
+     b.   Running the model inside the AWIPS LAN
+
+     The  easiest way if getting the WS Eta model into AWIPS when
+     running the model inside the AWIPS LAN is to use the  remote
+     copy  (rcp)  command  and  push the  data  into  AWIPS.  The
+     instructions  to  use  this option  are  also  included  the
+     eta_convert.csh (AWIPS = RCP) script and requires a  minimum
+     amount     of     configuration.     Please     see      the
+     $ETA_RUN/eta_convert.csh for more information.
+
+
+That's all folks!
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Robert A. Rozumalski          NWS National SOO/STRC Coordinator
+                              Robert.Rozumalski@noaa.gov
+COMET/UCAR PO Box 3000        Phone:    (303) 497-8356
+Boulder, CO 80307-3000        FAX:      (303) 497-8491
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+

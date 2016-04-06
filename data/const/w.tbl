@@ -1,0 +1,72 @@
+!
+! WMOGRIB2.TBL -- GRIB 1 parameter conversion table version 2
+!
+!ID# NAME                             UNITS                GNAM         SCALE   MISSING
+!
+001 Pressure                          Pa                   PRES            -2  -9999.00
+002 Pressure reduced to MSL           Pa                   PMSL            -2  -9999.00
+003 Pressure tendency                 Pa s**-1             PTND            -2  -9999.00
+006 Geopotential                      m**2 s**-2           GP               0  -9999.00
+007 Geopotential height               gpm                  HGHT             0  -9999.00
+008 Geometrical height                m                    DIST             0  -9999.00
+!
+011 Temperature                       K                    TMPK             0  -9999.00
+012 Virtual temperature               K                    TVRK             0  -9999.00
+013 Potential temperature             K                    THTA             0  -9999.00
+014 Equivalent potential temp         K                    THTE             0  -9999.00
+015 Maximum temperature               K                    TMXK             0  -9999.00
+016 Minimum temperature               K                    TMNK             0  -9999.00
+017 Dew-point temperature             K                    DWPK             0  -9999.00
+018 Dew-point depression(or deficit)  K                    DPDK             0  -9999.00
+019 Lapse rate                        K m**-1              LAPS             0  -9999.00
+020 Visibility                        m                    VSBY             0  -9999.00
+!
+024 Parcel Lifted Index               K                    PLI              0  -9999.00
+!
+031 Wind direction                    Degree true          DRCT             0  -9999.00
+032 Wind speed                        m s**-1              SPED             0  -9999.00
+033 u-component of wind               m s**-1              UREL             0  -9999.00
+034 v-component of wind               m s**-1              VREL             0  -9999.00
+037 Montgomery streamfunction         m**2 s**-2           PSYM            -2  -9999.00
+039 Pressure vertical velocity        Pa s**-1             OMEG            -2  -9999.00
+!
+051 Specific humidity                 kg kg**-1            SPFH             0  -9999.00
+052 Relative humidity                 %                    RELH             0  -9999.00
+053 Humidity mixing ratio             kg kg**-1            MIXR             3  -9999.00
+054 Precipitable water                kg m**-2             PWTR             0  -9999.00
+059 Precipitation rate                kg m**-2 s**-1       PR--             0  -9999.00
+!
+061 Total precipitation               kg m**-2             P--M             0     -0.01
+062 Large scale precipitation         kg m**-2             S--M             0     -0.01
+063 Convective precipitation          kg m**-2             C--M             0     -0.01
+064 Snowfall rate water equivalent    kg m**-2 s**-1       SR--             0  -9999.00
+065 Water equiv of accum snow depth   kg m**-2             SWEM             0  -9999.00
+066 Snow depth                        m                    SNDM             0  -9999.00
+067 Mixed layer depth                 m                    MIXL             0  -9999.00
+!
+071 Total cloud cover                 %                    CLD              0  -9999.00
+072 Convective cloud cover            %                    CCLD             0  -9999.00
+073 Low cloud cover                   %                    CLDL             0  -9999.00
+074 Medium cloud cover                %                    CLDM             0  -9999.00
+075 High cloud cover                  %                    CLDH             0  -9999.00
+076 Cloud water                       kg m**-2             CWTR             0  -9999.00
+077 Condensation pressure             Pa                   CNDP            -2  -9999.00
+078 Convective snow                   kg m**-2             CSNO             0  -9999.00
+079 Large scale snow                  kg m**-2             LSNO             0  -9999.00
+!
+080 Water temperature                 K                    WTMPK            0  -9999.00
+081 Land-sea mask (1=land; 0=sea)     integer              LAND             0  -9999.00
+085 Soil temperature                  K                    TSOIL            0  -9999.00
+!
+111 Net short-wave radiation (sfc)    W m**-2              SNIR             0  -9999.00
+112 Net long-wave radiation (sfc)     W m**-2              SNOR             0  -9999.00
+113 Net short-wave rad (top of atm)   W m**-2              SWRT             0  -9999.00
+114 Net long-wave rad (top of atm)    W m**-2              LWRT             0  -9999.00
+115 Long-wave radiation               W m**-2              LWRAD            0  -9999.00
+116 Short-wave radiation              W m**-2              SWRAD            0  -9999.00
+117 Global radiation                  W m**-2              GLRAD            0  -9999.00
+!
+121 Latent heat flux                  W m**-2              FXLH             0  -9999.00
+122 Sensible heat flux                W m**-2              FXSH             0  -9999.00
+124 u-component of momentum flux      N m**-2              URELFX           0  -9999.00
+125 v-component of momentum flux      N m**-2              VRELFX           0  -9999.00

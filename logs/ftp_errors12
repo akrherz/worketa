@@ -1,0 +1,125 @@
+Connected to ftp.ncep.noaa.gov.
+220-
+220-
+220-**WARNING**WARNING**WARNING**WARNING**WARNING**WARNING*
+220-
+220-YOU HAVE ACCESSED A UNITED STATES GOVERNMENT COMPUTER.
+220-USE OF THIS COMPUTER WITHOUT AUTHORIZATION OR FOR
+220-PURPOSES FOR WHICH AUTHORIZATION HAS NOT BEEN EXTENDED
+220-IS A VIOLATION OF FEDERAL LAW AND CAN BE PUNISHED WITH
+220-FINES OR IMPRISONMENT (PUBLIC LAW 99-474).  REPORT
+220-SUSPECTED VIOLATIONS TO THE SYSTEM SECURITY OFFICER.
+220-
+220-**WARNING**WARNING**WARNING**WARNING**WARNING**WARNING*
+220-
+220-
+220-******************************************************
+220-NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE
+220-
+220-This server is not considered operational.
+220-It is only supported Monday thru Friday between 0700
+220-and 1600 EST. 
+220-
+220-The NWS ftp server (140.90.6.103) is the most reliable
+220-source for operational data.  That server is supported
+220-on a 7x24 basis.
+220- 
+220-NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE
+220-******************************************************
+220-
+220 ftp.ncep.noaa.gov FTP server (Version wu-2.4.2-academ (1) Fri Jul 2 12:52:07 EDT 1999) ready.
+331 Guest login ok, send your complete e-mail address as password.
+230 Guest login ok, access restrictions apply.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+Interactive mode off.
+200 Type set to I.
+250 CWD command successful.
+local: eta.T12Z.AWIP3D00.tm00 remote: eta.T12Z.AWIP3D00.tm00
+227 Entering Passive Mode (140,90,97,24,58,135)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D00.tm00 (13425242 bytes).
+226 Transfer complete.
+13425242 bytes received in 99.2 secs (1.3e+02 Kbytes/sec)
+local: eta.T12Z.AWIP3D03.tm00 remote: eta.T12Z.AWIP3D03.tm00
+227 Entering Passive Mode (140,90,97,24,72,62)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D03.tm00 (13989042 bytes).
+226 Transfer complete.
+13989042 bytes received in 103 secs (1.3e+02 Kbytes/sec)
+local: eta.T12Z.AWIP3D06.tm00 remote: eta.T12Z.AWIP3D06.tm00
+227 Entering Passive Mode (140,90,97,24,85,138)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D06.tm00 (14019050 bytes).
+226 Transfer complete.
+14019050 bytes received in 92.9 secs (1.5e+02 Kbytes/sec)
+local: eta.T12Z.AWIP3D09.tm00 remote: eta.T12Z.AWIP3D09.tm00
+227 Entering Passive Mode (140,90,97,24,97,237)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D09.tm00 (14025008 bytes).
+226 Transfer complete.
+14025008 bytes received in 85.7 secs (1.6e+02 Kbytes/sec)
+local: eta.T12Z.AWIP3D12.tm00 remote: eta.T12Z.AWIP3D12.tm00
+227 Entering Passive Mode (140,90,97,24,109,6)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D12.tm00 (14036932 bytes).
+226 Transfer complete.
+14036932 bytes received in 101 secs (1.4e+02 Kbytes/sec)
+local: eta.T12Z.AWIP3D15.tm00 remote: eta.T12Z.AWIP3D15.tm00
+227 Entering Passive Mode (140,90,97,24,121,229)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D15.tm00 (14030788 bytes).
+226 Transfer complete.
+14030788 bytes received in 103 secs (1.3e+02 Kbytes/sec)
+local: eta.T12Z.AWIP3D18.tm00 remote: eta.T12Z.AWIP3D18.tm00
+227 Entering Passive Mode (140,90,97,24,11,154)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D18.tm00 (13947444 bytes).
+226 Transfer complete.
+13947444 bytes received in 133 secs (1e+02 Kbytes/sec)
+local: eta.T12Z.AWIP3D21.tm00 remote: eta.T12Z.AWIP3D21.tm00
+227 Entering Passive Mode (140,90,97,24,28,156)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D21.tm00 (13941474 bytes).
+226 Transfer complete.
+13941474 bytes received in 142 secs (96 Kbytes/sec)
+local: eta.T12Z.AWIP3D24.tm00 remote: eta.T12Z.AWIP3D24.tm00
+227 Entering Passive Mode (140,90,97,24,45,93)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D24.tm00 (13899710 bytes).
+226 Transfer complete.
+13899710 bytes received in 162 secs (84 Kbytes/sec)
+local: eta.T12Z.AWIP3D27.tm00 remote: eta.T12Z.AWIP3D27.tm00
+227 Entering Passive Mode (140,90,97,24,64,61)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D27.tm00 (13902518 bytes).
+226 Transfer complete.
+13902518 bytes received in 177 secs (77 Kbytes/sec)
+local: eta.T12Z.AWIP3D30.tm00 remote: eta.T12Z.AWIP3D30.tm00
+227 Entering Passive Mode (140,90,97,24,84,155)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D30.tm00 (13798296 bytes).
+226 Transfer complete.
+13798296 bytes received in 192 secs (70 Kbytes/sec)
+local: eta.T12Z.AWIP3D33.tm00 remote: eta.T12Z.AWIP3D33.tm00
+227 Entering Passive Mode (140,90,97,24,106,193)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D33.tm00 (13860936 bytes).
+226 Transfer complete.
+13860936 bytes received in 130 secs (1e+02 Kbytes/sec)
+local: eta.T12Z.AWIP3D36.tm00 remote: eta.T12Z.AWIP3D36.tm00
+227 Entering Passive Mode (140,90,97,24,120,241)
+150 Opening BINARY mode data connection for eta.T12Z.AWIP3D36.tm00 (13837068 bytes).
+226 Transfer complete.
+13837068 bytes received in 106 secs (1.3e+02 Kbytes/sec)
+250 CWD command successful.
+local: imssnow.grb remote: imssnow.grb
+227 Entering Passive Mode (140,90,97,24,10,80)
+150 Opening BINARY mode data connection for imssnow.grb (1052498 bytes).
+226 Transfer complete.
+1052498 bytes received in 11.4 secs (90 Kbytes/sec)
+local: snowdepth.grb remote: snowdepth.grb
+227 Entering Passive Mode (140,90,97,24,11,144)
+150 Opening BINARY mode data connection for snowdepth.grb (285996 bytes).
+226 Transfer complete.
+285996 bytes received in 3.62 secs (77 Kbytes/sec)
+250 CWD command successful.
+local: gdas1.T00Z.sstgrb remote: gdas1.T00Z.sstgrb
+227 Entering Passive Mode (140,90,97,24,12,60)
+150 Opening BINARY mode data connection for gdas1.T00Z.sstgrb (154068 bytes).
+226 Transfer complete.
+154068 bytes received in 1.4 secs (1.1e+02 Kbytes/sec)
+local: gdas1.T00Z.sstgrb.index remote: gdas1.T00Z.sstgrb.index
+227 Entering Passive Mode (140,90,97,24,12,92)
+150 Opening BINARY mode data connection for gdas1.T00Z.sstgrb.index (386 bytes).
+226 Transfer complete.
+386 bytes received in 0.000613 secs (6.1e+02 Kbytes/sec)
+221 Goodbye.

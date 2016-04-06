@@ -1,0 +1,16 @@
+C-------------------------------------------------------------
+C***  SET THE NUMBER OF PEs IN THE I-DIRECTION AND J-DIRECTION
+      PARAMETER(INPES=1,JNPES=1)
+C-------------------------------------------------------------
+C
+      PARAMETER(IGSTL=1,IGSTR=-1)
+      PARAMETER(JGSTL=1,JGSTR=-1)
+      PARAMETER(ITAIL=IM-(INPES*(IM/INPES)))
+      PARAMETER(JTAIL=JM-(JNPES*(JM/JNPES)))
+C
+C     PARAMETER(IDIM1=IGSTL,IDIM2=IM/INPES+IGSTR+1)
+C     PARAMETER(JDIM1=JGSTL,JDIM2=JM/JNPES+JGSTR+1)
+      PARAMETER(IDIM1=1,IDIM2=IM)
+      PARAMETER(JDIM1=1,JDIM2=JM)
+C
+C-------------------------------------------------------------

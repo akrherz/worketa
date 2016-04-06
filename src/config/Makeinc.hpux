@@ -1,0 +1,37 @@
+####################################################################
+####################################################################
+#  Makeinc.include - NWS R.Rozumalski (12/99) 
+#
+# NOTE:  This file is included by the:
+#        $(WS_ETA)/src/config/Makeinc.common
+#
+#################################################################
+# 
+#
+#  Special definitions for compiling/linking/etc
+
+INSTALL = cp -f
+RANLIB  = :
+
+CC 	= /opt/ansic/bin/cc
+
+COMP    = -DHPUX
+
+FOPT 	= +Odataprefetch +O2 +U77 
+FOPTA   = +Odataprefetch +O3 +Ocache_pad_common +Oall +U77
+COPT	= 
+
+F90	= /opt/fortran90/bin/f90
+
+##  Define compile,link,archive, & remove variables 
+##  (leave as is)
+##
+
+ANSI      = -Aa -Ae
+CFLAGS    = $(COPT) $(ANSI)
+FFLAGS    = $(FOPT)
+FFLAGSA	  = $(FOPTA)
+COMPILE.f = $(FC) $(FFLAGS)  -c
+LINK.f    = $(FC) $(FFLAGS)
+COMPILE.c = $(CC) $(CFLAGS)  -c
+LINK.c	  = $(CC) $(LDFLAGS)

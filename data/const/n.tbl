@@ -1,0 +1,42 @@
+!
+! NCEPGRIB2.TBL -- GRIB 1 parameter conversion table version 2
+!
+!ID# NAME                             UNITS                GNAM         SCALE   MISSING
+!
+128 MSLP (standard atm reduction)     Pa                   MSLP            -2  -9999.00
+129 MSLP (MAPS reduction)             Pa                   MMSL            -2  -9999.00
+130 MSLP (ETA reduction)              Pa                   EMSL            -2  -9999.00
+!
+131 Surface lifted index              K                    LIFT             0  -9999.00
+132 Best (4 layer) lifted index       K                    LFT4             0  -9999.00
+133 K index                           K                    KINX             0  -9999.00
+134 Sweat index                       K                    SWET             0  -9999.00
+136 Vertical speed shear              s**-1                VWSH             0  -9999.00
+137 3-hr pressure tendency (stdatm)   Pa s**-1             PTND3           -2  -9999.00
+138 Brunt-Vaisala freq (squared)      s**-2                BVSQ             0  -9999.00
+139 Potential vorticity (density wt)  s**-1 m**-1          POTV             0  -9999.00
+140 Categorical rain                  0,1                  WXTR             0  -9999.00
+!
+141 Categorical freezing rain         0,1                  WXTZ             0  -9999.00
+142 Categorical ice pellets           0,1                  WXTP             0  -9999.00
+143 Categorical snow                  0,1                  WXTS             0  -9999.00
+149 Potential vorticity               m**2/s/kg            PVOR             0  -9999.00
+!
+156 Convective inhibition             J kg**-1             CINS             0  -9999.00
+157 CAPE                              J kg**-1             CAPE             0  -9999.00
+158 Turbulent kinetic energy          J kg**-1             TRKE             0  -9999.00
+!
+176 Latitude (-90 to +90)             Degree               LATD             0  -9999.00
+177 East longitude (0 to 360)         Degree               LOND             0  -9999.00
+!
+189 Virtual potential temperature     K                    THTV             0  -9999.00
+190 Storm relative helicity           m**2/s**2            HLCY             0  -9999.00
+196 U-component of storm motion       m/s                  USTRM            0  -9999.00
+197 V-component of storm motion       m/s                  VSTRM            0  -9999.00
+!
+221 Planetary boundary layer hght     m                    ZPBL             0  -9999.00
+!
+232 Downward total radiation flux     W m**-2              DNRFX            0  -9999.00
+233 Upward total radiation flux       W m**-2              UPRFX            0  -9999.00
+238 Snow cover                        %                    SCVR             0  -9999.00
+239 Snow temperature                  K                    STMP             0  -9999.00

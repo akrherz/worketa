@@ -1,0 +1,93 @@
+###################################################################
+###################################################################
+#
+#       Makefile for ETA MODEL
+#               Top level
+#               Original: 11/99 R. Rozumalski
+#
+####################################################################
+####################################################################
+#
+#######################################################################
+#
+#  This file is included in all of the Makefiles for the Workstation ETA
+#  It defines the paths and filenames for the various libraries and
+#  executables.  This file replaces the need to specify the location
+#  of the libraries as environment variables.
+#
+#   $ETA_OS  - Used in $(WS_ETA)/src/config/Makeinc.common to decide which
+#              OS specific Makeinc.* to include.  It also cooresponds
+#              to the directories in the WS ETA tree where the executables
+#              and libraries are installed.
+#
+####################################################################
+#
+# Define the environment variables needed for installation:
+#
+#  You must configure TOP, ETA_LIB, and ETA_EXE.
+#
+#  Be sure that ETA_LIB and ETA_EXE exist on your system!
+#
+#  Location of the root of the ETA distribution tree.
+#
+TOP 		= $(WS_ETA)
+
+#
+#  Location of executables for "make clobber" action.
+#
+ETA_EXE		= $(TOP)/exe/$(ETA_OS)
+ETA_LIB		= $(TOP)/lib/$(ETA_OS)
+ETA_INCLUDE	= $(TOP)/src/include
+
+#
+#  Names of the various ETA libraries.
+#  
+
+BACIO		= $(ETA_LIB)/bacio.a
+IPLIB		= $(ETA_LIB)/iplib.a
+LIBMPI		= $(ETA_LIB)/libmpi.a
+LIBDEGRIB	= $(ETA_LIB)/libdegrib.a
+LIBETA		= $(ETA_LIB)/libeta.a
+LIBETAUTIL	= $(ETA_LIB)/libetautil.a
+LIBINITBC	= $(ETA_LIB)/libinitbc.a
+W3LIB		= $(ETA_LIB)/w3lib.a
+
+###############################################################
+###############################################################
+#
+# Generic Compilation and link flags for F77, F90, and CC.
+#  (leave these settings as is, make specific definitions in the
+#   next section)
+#
+###############################################################
+###############################################################
+#
+SHELL            = /bin/sh
+FC               = f77
+CC               = cc
+F90		 = f90
+CFLAGS           = -D$(OS)
+ANSI_CFLAGS      = -D$(OS) 
+LD               = ld
+AR               = ar
+ARFLAGS          = rs
+RANLIB           = ranlib
+RM               = rm -f
+INSTALL          = install -s
+LN               = ln -s
+STRIP            = strip
+FFLAGS           = 
+CP               = cp
+RM		 = rm -f
+MV		 = mv -f
+
+#           Do Not Modify Anything Below This Line
+#
+# Specific compilation and link flags are stored in separate files
+# cooresponding to the operating system that WS ETA is being built 
+# on.  
+#
+# Modify the file (WS_ETA)/src/config/Makeinc.{your_os} to 
+# make changes specific to the target environment.
+#
+include $(WS_ETA)/src/config/Makeinc.$(ETA_OS)

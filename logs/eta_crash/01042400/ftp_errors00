@@ -1,0 +1,236 @@
+Connected to ftp.ncep.noaa.gov.
+220-
+220-
+220-**WARNING**WARNING**WARNING**WARNING**WARNING**WARNING*
+220-
+220-YOU HAVE ACCESSED A UNITED STATES GOVERNMENT COMPUTER.
+220-USE OF THIS COMPUTER WITHOUT AUTHORIZATION OR FOR
+220-PURPOSES FOR WHICH AUTHORIZATION HAS NOT BEEN EXTENDED
+220-IS A VIOLATION OF FEDERAL LAW AND CAN BE PUNISHED WITH
+220-FINES OR IMPRISONMENT (PUBLIC LAW 99-474).  REPORT
+220-SUSPECTED VIOLATIONS TO THE SYSTEM SECURITY OFFICER.
+220-
+220-**WARNING**WARNING**WARNING**WARNING**WARNING**WARNING*
+220-
+220-
+220-******************************************************
+220-NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE
+220-
+220-This server is not considered operational.
+220-It is only supported Monday thru Friday between 0700
+220-and 1600 EST. 
+220-
+220-The NWS ftp server (140.90.6.103) is the most reliable
+220-source for operational data.  That server is supported
+220-on a 7x24 basis.
+220- 
+220-NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE**NOTICE
+220-******************************************************
+220-
+220 ftp.ncep.noaa.gov FTP server (Version wu-2.4.2-academ (1) Fri Jul 2 12:52:07 EDT 1999) ready.
+331 Guest login ok, send your complete e-mail address as password.
+230 Guest login ok, access restrictions apply.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+Interactive mode off.
+200 Type set to I.
+250 CWD command successful.
+local: eta.t00z.awip3200.09 remote: eta.t00z.awip3200.09
+227 Entering Passive Mode (140,90,97,24,97,61)
+150 Opening BINARY mode data connection for eta.t00z.awip3200.09 (1574302 bytes).
+226 Transfer complete.
+1574302 bytes received in 9.91 secs (1.6e+02 Kbytes/sec)
+local: eta.t00z.awip3200.10 remote: eta.t00z.awip3200.10
+227 Entering Passive Mode (140,90,97,24,97,164)
+150 Opening BINARY mode data connection for eta.t00z.awip3200.10 (1598894 bytes).
+226 Transfer complete.
+1598894 bytes received in 6.64 secs (2.4e+02 Kbytes/sec)
+local: eta.t00z.awip3200.15 remote: eta.t00z.awip3200.15
+227 Entering Passive Mode (140,90,97,24,97,235)
+150 Opening BINARY mode data connection for eta.t00z.awip3200.15 (1600330 bytes).
+226 Transfer complete.
+1600330 bytes received in 4.73 secs (3.3e+02 Kbytes/sec)
+local: eta.t00z.awip3200.16 remote: eta.t00z.awip3200.16
+227 Entering Passive Mode (140,90,97,24,98,20)
+150 Opening BINARY mode data connection for eta.t00z.awip3200.16 (1632606 bytes).
+226 Transfer complete.
+1632606 bytes received in 5.96 secs (2.7e+02 Kbytes/sec)
+local: eta.t00z.awip3203.09 remote: eta.t00z.awip3203.09
+227 Entering Passive Mode (140,90,97,24,98,80)
+150 Opening BINARY mode data connection for eta.t00z.awip3203.09 (1600640 bytes).
+226 Transfer complete.
+1600640 bytes received in 4.95 secs (3.2e+02 Kbytes/sec)
+local: eta.t00z.awip3203.10 remote: eta.t00z.awip3203.10
+227 Entering Passive Mode (140,90,97,24,98,126)
+150 Opening BINARY mode data connection for eta.t00z.awip3203.10 (1625936 bytes).
+226 Transfer complete.
+1625936 bytes received in 2.99 secs (5.3e+02 Kbytes/sec)
+local: eta.t00z.awip3203.15 remote: eta.t00z.awip3203.15
+227 Entering Passive Mode (140,90,97,24,98,157)
+150 Opening BINARY mode data connection for eta.t00z.awip3203.15 (1649888 bytes).
+226 Transfer complete.
+1649888 bytes received in 3.64 secs (4.4e+02 Kbytes/sec)
+local: eta.t00z.awip3203.16 remote: eta.t00z.awip3203.16
+227 Entering Passive Mode (140,90,97,24,98,184)
+150 Opening BINARY mode data connection for eta.t00z.awip3203.16 (1694640 bytes).
+226 Transfer complete.
+1694640 bytes received in 5.11 secs (3.2e+02 Kbytes/sec)
+local: eta.t00z.awip3206.09 remote: eta.t00z.awip3206.09
+227 Entering Passive Mode (140,90,97,24,98,239)
+150 Opening BINARY mode data connection for eta.t00z.awip3206.09 (1598226 bytes).
+226 Transfer complete.
+1598226 bytes received in 5.35 secs (2.9e+02 Kbytes/sec)
+local: eta.t00z.awip3206.10 remote: eta.t00z.awip3206.10
+227 Entering Passive Mode (140,90,97,24,99,39)
+150 Opening BINARY mode data connection for eta.t00z.awip3206.10 (1640852 bytes).
+226 Transfer complete.
+1640852 bytes received in 3.79 secs (4.2e+02 Kbytes/sec)
+local: eta.t00z.awip3206.15 remote: eta.t00z.awip3206.15
+227 Entering Passive Mode (140,90,97,24,99,78)
+150 Opening BINARY mode data connection for eta.t00z.awip3206.15 (1642276 bytes).
+226 Transfer complete.
+1642276 bytes received in 3.88 secs (4.1e+02 Kbytes/sec)
+local: eta.t00z.awip3206.16 remote: eta.t00z.awip3206.16
+227 Entering Passive Mode (140,90,97,24,99,129)
+150 Opening BINARY mode data connection for eta.t00z.awip3206.16 (1666916 bytes).
+226 Transfer complete.
+1666916 bytes received in 5.32 secs (3.1e+02 Kbytes/sec)
+local: eta.t00z.awip3209.09 remote: eta.t00z.awip3209.09
+227 Entering Passive Mode (140,90,97,24,99,180)
+150 Opening BINARY mode data connection for eta.t00z.awip3209.09 (1575380 bytes).
+226 Transfer complete.
+1575380 bytes received in 2.84 secs (5.4e+02 Kbytes/sec)
+local: eta.t00z.awip3209.10 remote: eta.t00z.awip3209.10
+227 Entering Passive Mode (140,90,97,24,99,200)
+150 Opening BINARY mode data connection for eta.t00z.awip3209.10 (1607932 bytes).
+226 Transfer complete.
+1607932 bytes received in 3.04 secs (5.2e+02 Kbytes/sec)
+local: eta.t00z.awip3209.15 remote: eta.t00z.awip3209.15
+227 Entering Passive Mode (140,90,97,24,99,233)
+150 Opening BINARY mode data connection for eta.t00z.awip3209.15 (1632926 bytes).
+226 Transfer complete.
+1632926 bytes received in 3.42 secs (4.7e+02 Kbytes/sec)
+local: eta.t00z.awip3209.16 remote: eta.t00z.awip3209.16
+227 Entering Passive Mode (140,90,97,24,100,5)
+150 Opening BINARY mode data connection for eta.t00z.awip3209.16 (1667250 bytes).
+226 Transfer complete.
+1667250 bytes received in 3.62 secs (4.5e+02 Kbytes/sec)
+local: eta.t00z.awip3212.09 remote: eta.t00z.awip3212.09
+227 Entering Passive Mode (140,90,97,24,100,37)
+150 Opening BINARY mode data connection for eta.t00z.awip3212.09 (1572606 bytes).
+226 Transfer complete.
+1572606 bytes received in 3.74 secs (4.1e+02 Kbytes/sec)
+local: eta.t00z.awip3212.10 remote: eta.t00z.awip3212.10
+227 Entering Passive Mode (140,90,97,24,100,81)
+150 Opening BINARY mode data connection for eta.t00z.awip3212.10 (1619724 bytes).
+226 Transfer complete.
+1619724 bytes received in 3.82 secs (4.1e+02 Kbytes/sec)
+local: eta.t00z.awip3212.15 remote: eta.t00z.awip3212.15
+227 Entering Passive Mode (140,90,97,24,100,120)
+150 Opening BINARY mode data connection for eta.t00z.awip3212.15 (1645450 bytes).
+226 Transfer complete.
+1645450 bytes received in 3 secs (5.4e+02 Kbytes/sec)
+local: eta.t00z.awip3212.16 remote: eta.t00z.awip3212.16
+227 Entering Passive Mode (140,90,97,24,100,144)
+150 Opening BINARY mode data connection for eta.t00z.awip3212.16 (1676248 bytes).
+226 Transfer complete.
+1676248 bytes received in 2.97 secs (5.5e+02 Kbytes/sec)
+local: eta.t00z.awip3215.09 remote: eta.t00z.awip3215.09
+227 Entering Passive Mode (140,90,97,24,100,193)
+150 Opening BINARY mode data connection for eta.t00z.awip3215.09 (1585442 bytes).
+226 Transfer complete.
+1585442 bytes received in 3.22 secs (4.8e+02 Kbytes/sec)
+local: eta.t00z.awip3215.10 remote: eta.t00z.awip3215.10
+227 Entering Passive Mode (140,90,97,24,100,244)
+150 Opening BINARY mode data connection for eta.t00z.awip3215.10 (1613496 bytes).
+226 Transfer complete.
+1613496 bytes received in 4.49 secs (3.5e+02 Kbytes/sec)
+local: eta.t00z.awip3215.15 remote: eta.t00z.awip3215.15
+227 Entering Passive Mode (140,90,97,24,101,35)
+150 Opening BINARY mode data connection for eta.t00z.awip3215.15 (1651664 bytes).
+226 Transfer complete.
+1651664 bytes received in 3.45 secs (4.7e+02 Kbytes/sec)
+local: eta.t00z.awip3215.16 remote: eta.t00z.awip3215.16
+227 Entering Passive Mode (140,90,97,24,101,84)
+150 Opening BINARY mode data connection for eta.t00z.awip3215.16 (1667228 bytes).
+226 Transfer complete.
+1667228 bytes received in 5.05 secs (3.2e+02 Kbytes/sec)
+local: eta.t00z.awip3218.09 remote: eta.t00z.awip3218.09
+227 Entering Passive Mode (140,90,97,24,101,146)
+150 Opening BINARY mode data connection for eta.t00z.awip3218.09 (1577490 bytes).
+226 Transfer complete.
+1577490 bytes received in 3.29 secs (4.7e+02 Kbytes/sec)
+local: eta.t00z.awip3218.10 remote: eta.t00z.awip3218.10
+227 Entering Passive Mode (140,90,97,24,101,176)
+150 Opening BINARY mode data connection for eta.t00z.awip3218.10 (1616960 bytes).
+226 Transfer complete.
+1616960 bytes received in 3.53 secs (4.5e+02 Kbytes/sec)
+local: eta.t00z.awip3218.15 remote: eta.t00z.awip3218.15
+227 Entering Passive Mode (140,90,97,24,101,198)
+150 Opening BINARY mode data connection for eta.t00z.awip3218.15 (1643004 bytes).
+226 Transfer complete.
+1643004 bytes received in 4.93 secs (3.3e+02 Kbytes/sec)
+local: eta.t00z.awip3218.16 remote: eta.t00z.awip3218.16
+227 Entering Passive Mode (140,90,97,24,102,8)
+150 Opening BINARY mode data connection for eta.t00z.awip3218.16 (1655420 bytes).
+226 Transfer complete.
+1655420 bytes received in 2.9 secs (5.6e+02 Kbytes/sec)
+local: eta.t00z.awip3221.09 remote: eta.t00z.awip3221.09
+227 Entering Passive Mode (140,90,97,24,102,46)
+150 Opening BINARY mode data connection for eta.t00z.awip3221.09 (1578180 bytes).
+226 Transfer complete.
+1578180 bytes received in 4.97 secs (3.1e+02 Kbytes/sec)
+local: eta.t00z.awip3221.10 remote: eta.t00z.awip3221.10
+227 Entering Passive Mode (140,90,97,24,102,94)
+150 Opening BINARY mode data connection for eta.t00z.awip3221.10 (1632220 bytes).
+226 Transfer complete.
+1632220 bytes received in 2.38 secs (6.7e+02 Kbytes/sec)
+local: eta.t00z.awip3221.15 remote: eta.t00z.awip3221.15
+227 Entering Passive Mode (140,90,97,24,102,111)
+150 Opening BINARY mode data connection for eta.t00z.awip3221.15 (1653062 bytes).
+226 Transfer complete.
+1653062 bytes received in 2.91 secs (5.6e+02 Kbytes/sec)
+local: eta.t00z.awip3221.16 remote: eta.t00z.awip3221.16
+227 Entering Passive Mode (140,90,97,24,102,147)
+150 Opening BINARY mode data connection for eta.t00z.awip3221.16 (1663748 bytes).
+226 Transfer complete.
+1663748 bytes received in 2.52 secs (6.5e+02 Kbytes/sec)
+local: eta.t00z.awip3224.09 remote: eta.t00z.awip3224.09
+227 Entering Passive Mode (140,90,97,24,102,168)
+150 Opening BINARY mode data connection for eta.t00z.awip3224.09 (1578864 bytes).
+226 Transfer complete.
+1578864 bytes received in 2.69 secs (5.7e+02 Kbytes/sec)
+local: eta.t00z.awip3224.10 remote: eta.t00z.awip3224.10
+227 Entering Passive Mode (140,90,97,24,102,198)
+150 Opening BINARY mode data connection for eta.t00z.awip3224.10 (1630800 bytes).
+226 Transfer complete.
+1630800 bytes received in 4.25 secs (3.7e+02 Kbytes/sec)
+local: eta.t00z.awip3224.15 remote: eta.t00z.awip3224.15
+227 Entering Passive Mode (140,90,97,24,102,232)
+150 Opening BINARY mode data connection for eta.t00z.awip3224.15 (1641264 bytes).
+226 Transfer complete.
+1641264 bytes received in 2.97 secs (5.4e+02 Kbytes/sec)
+local: eta.t00z.awip3224.16 remote: eta.t00z.awip3224.16
+227 Entering Passive Mode (140,90,97,24,103,5)
+150 Opening BINARY mode data connection for eta.t00z.awip3224.16 (1652988 bytes).
+226 Transfer complete.
+1652988 bytes received in 2.98 secs (5.4e+02 Kbytes/sec)
+250 CWD command successful.
+local: imssnow.grb remote: imssnow.grb
+227 Entering Passive Mode (140,90,97,24,103,57)
+150 Opening BINARY mode data connection for imssnow.grb (1052498 bytes).
+226 Transfer complete.
+1052498 bytes received in 1.84 secs (5.6e+02 Kbytes/sec)
+local: snowdepth.grb remote: snowdepth.grb
+227 Entering Passive Mode (140,90,97,24,103,73)
+150 Opening BINARY mode data connection for snowdepth.grb (310472 bytes).
+226 Transfer complete.
+310472 bytes received in 1.16 secs (2.6e+02 Kbytes/sec)
+250 CWD command successful.
+550 /pub/data1/rtg_sst/rtg_sst.20010424: No such file or directory.
+local: rtg_sst_grb_0.5 remote: rtg_sst_grb_0.5
+227 Entering Passive Mode (140,90,97,24,103,80)
+150 Opening BINARY mode data connection for rtg_sst_grb_0.5 (388884 bytes).
+226 Transfer complete.
+388884 bytes received in 0.921 secs (4.1e+02 Kbytes/sec)
+221 Goodbye.

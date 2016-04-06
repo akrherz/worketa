@@ -1,0 +1,50 @@
+
+I.   INTRODUCTION
+
+The  Science  Operations  Officer/Science  and  Training  Resource
+Center  (SOO/STRC) version of the workstation (WS) Eta  model  was
+developed  as  a  means of providing Numerical Weather  Prediction
+(NWP)  guidance  to  National  Weather  Service  (NWS)  and  River
+Forecast  Center (RFC) forecasters at temporal and spatial  scales
+not  available from operational data sources. In addition, the  WS
+Eta  may  be  used as a powerful tool for studying local  forecast
+problems   and  historically  significant  weather   events.   The
+overarching goals in making local area models (LAMs) available are
+to  further  the knowledge and use of NWP in the forecast  office,
+and to improve the understanding of local forecast processes.
+
+The  WS  Eta  is  a  complete, full-physics,  NWP  system,  nearly
+identical  to  that run operationally at the National  Center  for
+Environmental   Prediction  (NCEP).  However,  the   installation,
+configuration,  and  running  of the SOO/STRC  package  have  been
+greatly  simplified from the operational version to encourage  its
+use  by  forecast offices. The SOO/STRC package is easy to run  on
+most  UNIX  and LINUX workstations; it should possible  for  those
+with limited modeling experience to have the model running in less
+than 1 hour. In addition, the WS Eta code is very efficient, which
+should be an advantage for real-time forecasting purposes.
+
+The  SOO/STRC modeling package is fully supported by the  National
+SOO/STRC  coordinator. I will assist your office in any aspect  of
+setting  up  and running the model and getting these data  to  the
+forecasters.   Note that the package is always under  development,
+so please feel free to send me you suggestions for improvement.
+
+There are a number of README files that will assist you in setting
+up  and  running  the SOO/STRC WS Eta that can  be  found  in  the
+$WS_ETA/docs directory or the worketa/version2.0/README directory
+on the soosac ftp server. Here is a brief summary of the files:
+
+    I. wseta_intro.README       This file
+   II. wseta_setup.README       Setting up the SOO/STRC WS Eta
+  III. wseta_running.README     Configuring and running the WS Eta
+   IV. wseta_domain.README      Choosing a computational domain
+    V. wseta_acknowledgments.README  Self explanatory
+   VI. wseta_2awips.README      Getting WS Eta model data into AWIPS
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Robert A. Rozumalski         NWS National SOO/STRC Coordinator
+                             Robert.Rozumalski@noaa.gov
+COMET/UCAR PO Box 3000       Phone:    (303) 497-8356
+Boulder, CO 80307-3000       FAX:      (303) 497-8491
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

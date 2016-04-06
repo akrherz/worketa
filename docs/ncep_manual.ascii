@@ -1,0 +1,856 @@
+
+	                A Guide to the Workstation Eta
+
+
+
+Matthew E. Pyle
+General Sciences Corporation
+May 1999
+mpyle@ncep.noaa.gov
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Initial setup
+
+1)  Extract the contents of the tar file with the following command:
+
+tar -xf wrkst_package.tar
+
+This will extract the contents of this file into a directory named worketa.
+
+2) Delete any files in the /worketa/dprep/exe and /worketa/dprep/lib
+directories (note:  portions of pathnames before worketa will not be included
+in this manual).
+
+3)  change directories to /worketa/dprep/install.
+
+4)  enter the command: configure
+
+This will automatically configure the paths in the makefile used in the next
+step.
+
+5)  enter the command: make
+
+Running this makefile creates the executables for the dprep (data
+preparation) part of the package.
+
+6) Delete any files in the /worketa/eta/exe and /worketa/eta/lib directories
+(although as delivered these directories should be empty).
+
+7) Create the software libraries which are required when compiling the model.
+These compilations *require* a FORTRAN 90 compiler; tests using FORTRAN 77 on
+several platforms were unsuccessful.
+
+a) go to /worketa/libraries/bacio.source.
+
+* define the system that the bacio library is being built for in the file
+clib.h.  For machines other than LINUX, SGI, or HP the recommendation is to
+create distinct versions with the HP and SGI settings and then see if either
+of them will link properly with the code being compiled.  The compilations in
+steps 14b and 16a utilize the bacio library.
+
+* Edit the definition of CPU type in the script comp.com as the HP C-compiler
+required some special compiler options to handle the C part of the code.
+
+* Enter the command comp.com to create the file bacio in /worketa/libraries.
+
+b) go to /worketa/libraries/w3lib.source
+
+* enter the command sh compall_future.sh to create the file w3lib in
+/worketa/libraries.
+
+c) go to /worketa/libraries/iplib.source
+
+* enter the command sh compallip.sh to create the file iplib in
+/worketa/libraries.
+
+8) Extract the topography data
+
+The topography data were downloaded (or should have been) when this package
+was downloaded.  The data should now be placed into /worketa/eta/static/topo.
+The topography data are tarred into latitudinal strips extending from 180W to
+40W; the data stored in /pub/gcp/wrkstn_eta/ on the ftp.ncep.noaa.gov FTP
+server cover between 10N and 80N.  These files should be uncompressed
+(uncompress *.Z) and untarred (tar -xf topofile).  Delete the tar files once
+the topography data has been extracted.  Users not covered by the included
+topography data will need to contact me to get the data (e-mail:
+mpyle@ncep.noaa.gov).
+
+The individual topography files cover a 10 degree X 10 degree region and the
+file names (e.g., U20N130W) give the latitude/longitude value of the
+southwest corner of the file.
+
+9)  Set up the surface and fixed fields
+
+a) land/sea mask data; first go to /worketa/eta/bin
+
+The package as delivered is defaulted to use US_2m_slm.ieee, a high
+resolution (2' lat/lon) dataset covering from 10N, 180W to 80N, 30W.  The
+other two datasets (global_4m.ieee, global_8m.ieee) are global and are at 4
+minute and 8 minute resolution, respectively.  Users covered by the regional
+2 minute dataset need only to uncompress the US_2m_slm.ieee.Z file.
+
+Users outside of the greater North America region will need to change the
+subroutine call in /worketa/eta/src/prep/sfc/etatopo.f at about line 667 (or
+search for the string ETA_SEA) and choose between the 8 minute and 4 minute
+data.  Sample calls for using each input data set are included as comments
+within the code.  In addition to changing this code, uncompress either the 4
+or 8 minute dataset in /worketa/eta/bin corresponding to the resolution
+specified by the subroutine call.
+
+b) enter the command:  uncompress a*.Z i*.Z r*.Z v*.Z
+
+This will uncompress other surface/fixed fields such as albedo and vegetation
+type.  These files are described below in #3 of ``Getting the input data''.
+
+10)  change directories to /worketa/eta/src/configure.
+
+11) Edit the make.inc file to set the desired compiler options.  Examples
+that were tested on SGI and HP workstations using FORTRAN 90 are included in
+this directory.  Some faulty behavior was experienced when running a 45-level
+version of the model compiled with the -O3 (aggressive optimization) option
+on an SGI.  The recommended highest optimization level to use is -O2 (or an
+equivalent less than most aggressive optimization for a compiler).
+
+12) This package was configured with a model top pressure of 25 hPa, which is
+identical to operational Eta runs made at NCEP.  The package has only been
+provided with files enabling model top pressures of 25 and 50 hPa.  To change
+the top pressure, edit the file /worketa/eta/src/prep/initbc/interp.f.  The
+variable is named pt and is defined in a data statement near the top of the
+subroutine vinterp (value is specified in Pa).
+
+13) change directories to /worketa/eta/install and enter the command:
+configure
+
+This will configure the paths in the makefile and the namelist file (ETAIN)
+that is used by the workstation Eta.
+
+14a) Edit the parmeta file in /worketa/eta/src/include to set the IM (the
+number of mass gridpoints along the first row, essentially half the total
+number of gridpoints in the west-east direction due to the horizontal
+staggering of mass and wind points), JM (number of gridpoints in the
+north-south direction), and LM (number of vertical levels, which needs to be
+38, 45, 50, or 60 to work with the deta and radiation files included with the
+package; see step 15 of this section).
+
+Copy the parmeta file to the directory  ../../../post.
+
+14b)  Go to /worketa/eta/install and enter the command:  make
+
+This will compile the model code, as well as codes used to initialize and
+interpolate the data coming into the model (initial degribbing is done by the
+dprep code).  The model dimensions are set during compilation by the parmeta
+file modified in the previous step.
+
+15) change directories to /worketa/eta/bin.  The model uses files to specify
+the relative thicknesses of the eta levels and the radiative properties of
+the atmosphere.
+
+a) The eta levels file is configured based on the number of vertical levels
+(LM).  In the deta_files subdirectory are files for 38, 45, 50, and 60 level
+configurations of the Eta.  Copy the version corresponding to the LM set when
+compiling the model in the previous step to the file deta in
+/worketa/eta/bin.
+
+b) change directories to /worketa/eta/runs.
+
+c) The radiation file depends on both the number of vertical levels and the
+pressure at the top of the model domain.  In the rad_files subdirectory are
+files for 38, 45, 50, and 60 level configurations of the Eta with top
+pressures of 25 and 50 hPa.  Copy the proper radiation file to the file
+co2.dat in /worketa/eta/runs.
+
+16) Compile the programs used by the post-processor
+
+a) go to /worketa/copygb and enter make to create the executable.
+
+b) go to /worketa/post and modify the parmeta file (if it was not copied to
+this directory in step 14a) so it has the same dimensions (IM, JM, LM) used
+to compile the model.  LSM controls the number of pressure levels that output
+can be generated for in the post.
+
+The compiler options are set through the variable FFLAG in the makefile.  The
+post generally runs quickly enough without much optimization, but quicker
+run-time performance can be achieved through FFLAG defined optimizations.
+
+Enter make to create the executable.  
+  
+17) You are now done with the initial set up (meaning you will not have to
+repeat these steps unless you configure the model on a different disk space,
+or want to change the model dimensions).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Getting the input data %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%                        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+1) Go to /worketa/dprep/bin and decide on an input data set.  Currently the
+workstation Eta can be initialized from AVN data, and from Eta data on grids
+104, 212, and 221 (in tiled form; see #2 of this section).  A plot showing the
+area covered by the Eta output grids and the operational 32 km Eta domain is
+located in the files regions.plt and regions.pdf, which are postscript and pdf
+versions of the same plot.  The raw GRIB data are obtained via FTP from
+ftp.ncep.noaa.gov.  Scripts have been included which will get the data and put
+it into the format needed to initialize the workstation Eta.  The scripts are
+used in the following way:
+
+data_prep_model.com input1 input2 input3
+
+model is the form of data to get (AVN, 104, 212, or 221_tiled).
+ 
+input1 is the model cycle (00, 06, 12, or 18).  It assumes the current 
+day.
+
+input2 is the last hour of input model data to get (should be no larger 
+than the intended length of the workstation Eta forecast).
+
+input3 is the interval in hours between the input model forecasts (the
+frequency with which the lateral boundary conditions are updated; typically 3
+or 6 depending on available bandwidth and disk storage).
+
+EXAMPLE:  If the user wanted grid 212 data for a 24 hour model run based on
+the 00Z cycle at 3 hour time resolution, the following command would be
+entered:  data_prep_212.com 00 24 03
+
+When running the ``data_prep'' scripts the actual work is done by two
+subscripts.  The first gets the data via FTP and the second does the
+degribbing.
+
+2)  Special comments about the grid 221 data, which is obtained in ``tiled'' 
+form:
+
+a) The region covered by each of the 36 tiles is displayed on the webpage
+http://www.emc.ncep.noaa.gov/research/tiles.221.html.  Some tiles along the
+boundary of this region are not completely filled with data, as this output
+grid extends beyond the computational domain of the operational Eta along much
+of the boundary.
+
+b) The user of this dataset will have to edit the files get_data_221_tiles.com
+and etagrid_221_tile.sh to obtain the tiles needed for a particular domain.
+The code which merges these tiles is fairly general, so any normal
+square/rectangular region should work.
+
+c) The tiled grid 221 dataset is the optimal dataset for initialization of the
+workstation Eta (in this author's opinion).  It provides 32 km horizontal
+resolution data, and with tiling a limited volume of data will cover a typical
+workstation domain.  The huge region covered includes almost the entire
+computational domain of the operational Eta, opening up a vast region to 
+workstation Eta runs.
+
+d) At most the two most recent cycles will be available on the FTP server.
+This output typically arrives on the FTP server a couple of hours after the
+grid 104 and grid 212 output, although this may change in the future when this
+tiled output becomes part of the standard set of output products.
+
+3)  Surface fields 
+
+a) Obtaining the time-dependent fields
+
+{sstgrb, sstgrb.index, imssnow.grb, snowdepth.grb}
+
+Go to /worketa/eta/bin and run the script get_sfcfields.com.  This script
+will FTP the most recent versions of these fields into the local directory.
+The model will run using old snow and SST files, but for better results these
+should be updated several times a week (particularly if the snowcover is
+varying over the computational domain).
+
+b) Descriptions of the included time-independent fields located in
+/worketa/eta/bin:
+
+{islope_1d_ieee, isltyp_1d_ieee, ivgtyp_1d_ieee}:
+
+These specify the slope, soil, and vegetation types. As indicated by 
+their names these are IEEE binary files.
+
+{alb1_ieee, alb2_ieee, alb3_ieee, alb4_ieee}:
+
+These are seasonal albedo files which are interpolated in time to get a
+starting value of albedo.  This albedo value is refined by code that considers
+surface characteristics, such as snow or sea-ice cover.
+
+{veg.eta.grb}:  
+
+This file contains the vegetation fraction, stored as a monthly value which is
+interpolated in time to reflect the vegetation fraction on the day of the
+model run.
+
+{imsmask.ascii}:
+
+This file contains the land/sea mask used when processing the IMS snow data
+(this is a high-resolution NESDIS product which is used to define snow and ice
+cover, but not depth).
+
+{rfusaflw_ieee}:
+
+This file contains the land/sea mask used when processing the Air Force snow
+data (a lower-resolution product that is used to define the model snowdepth).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%                            %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% SETTING UP THE MODEL RUN   %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%                            %%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Setting up the model run
+
+1)  Go to /worketa/eta/bin and edit the namelist file ETAIN to set up 
+the model run
+
+TLM0D,TPH0D:  These are the center longitude (E positive, W negative) and
+latitude of the model domain.
+
+IM,JM,LM:  The dimensions of the computational domain.  IM, JM, and LM were
+set in the file parmeta in /worketa/eta/src/include when the model was
+compiled.  The values specified in this file must agree with the compiled
+model dimensions.
+
+DLMD,DPHD:  The grid spacing in degrees in the east-west and north-south
+directions within the rotated lat-lon coordinate of the Eta model.  An
+approximate relationship between DLMD/DPHD and horizontal resolution is given
+below in the description of DT.
+
+DT:  The fundamental timestep of the model (in seconds), which depends upon
+horizontal resolution.  Some possible values are given below; when setting up
+a new model configuration it is good to start with these conservative values
+for DT.  Using an overly long time step will have grave consequences (the
+first indication will be an unsteadiness in the pressure depth of the model
+atmosphere, which will be reflected in the standard output as ``big pd
+change(mb):'' followed by a value).  Note that the given values of DT divide
+into 3600 evenly so the proper number of physics/adjustment steps will be
+performed each hour.
+
+
+DLMD/DPHD  resolution (km)  DT(s)
+---------  ---------------  -----
+ .066 	        10            20 
+ .098           15            30 
+ .213           32            72 
+ .32            48           100 
+
+
+W, IDTAD:  W controls suppression of gravity wave noise, and IDTAD is the 
+frequency of advection as a multiple of the fundamental time step (typically 
+0.25 and 2, respectively; do not need to be changed).
+
+IMONTH,IDATE,IYEAR,ISTRTIM:  Together these specify the initial time of the
+run.  ISTRTIM is the hour of the starting time (e.g., a run based on 12Z data
+has ISTRTIM=12)
+
+NSOIL:  The number of soil levels (should be 4).
+
+NINIT:  The number of input data files.
+
+INIT_IN(#):  The names of the input data files.  The naming convention is
+YYJJJCCHH.ETAmod, where YY is the 2-digit year, JJJ is the Julian day, CC is
+the cycle time, HH is the hour of the forecast, and mod is the extension given
+to the particular input dataset (104, 212, _avn, _tile).  The easiest way to
+get these file names is to look in the directory /worketa/data/prep/ for the
+most recent data files, although it is possible to set up an automated system
+to automatically do this if running in real-time (see Appendix:  Automating
+the process).  The number of files described should equal the NINIT value
+specified above.
+
+INIT_OUT:  The directory where the initial and boundary condition files will
+be written (should not need to be changed as this path was set during a
+configure step above).
+
+TBOCO:  Interval in hours between input model data (typically 3 or 6).
+
+NHOUR:  Total number of hours for which boundary condition files are created.  
+Should be equal to (NINIT-1) * TBOCO.
+
+FCST_OUT:  no longer used
+
+TOPO_IN:  Location where the raw (10 degree X 10 degree) topo files are
+stored.  This was set during a configure step above and should not need to be
+changed.
+
+TOPO_OUT:  File that stores the topography data for the current model domain
+(topography that has not yet been discretized in the vertical to coincide with
+eta surfaces).
+
+The remaining items in this file should not be changed, as most of these 
+logical switches are obsolete or currently are not working. 
+
+
+2a) edit the file new_prep.sh and define the variable head at the top of the
+script to the value appropriate to the hardware being used.  Most machines use
+``fort.'' to represent symbolic links, while HP's use ``ftn''.
+
+2b)  enter the command:  new_prep.sh
+
+This script runs programs that generate a topography file and the initial and
+lateral boundary conditions.  The topography need only be generated once per
+domain, so the line of the script running etatopo.exe could be commented out
+if the same domain is being run repeatedly (the output topography is stored in
+the TOPO_OUT file defined above and will be overwritten each time that 
+etatopo.exe is run).  This script generates two files of standard output,
+topo.out and initbc.out.
+
+3)  enter the command:  cd ../runs
+
+4)  edit the fcstdata file
+
+ &FCSTDATA                                                            
+ TSTART=00.0,TEND=24.00,TCP=99.0,RESTRT=.FALSE.,SUBPOST=.FALSE., 
+ NMAP=5,TSHDE=00.0,06.0,12.0,18.0,24.0,99.0,99.0,99.0,99.0,99.0,
+              99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,
+              99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,
+              99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,
+              99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,99.0,
+ SPL=10000.,15000.,20000.,25000.,30000.,35000.,40000.,45000.,50000.,
+ 55000.,60000.,65000.,70000.,75000.,80000.,85000.,90000.,92500.,
+ 95000.,100000.
+ NPHS=8,NCNVC=8,NRADSH=1,NRADLH=2,NTDDMP=1,                                    
+ TPREC=6.0,THEAT=6.0,TCLOD=6.0, 
+ TRDSW=6.0,TRDLW=6.0,TSRFC=6.0
+ &END           
+
+
+TEND:  Sets the forecast length in hours.
+
+NMAP:  Specifies the number of times for which the model will create output 
+files.
+
+TSHDE:  List of the forecast hours for which the model will generate output.
+The model will only consider the first NMAP values in the list, so do not
+worry about the long list of 99.0 values.
+
+SPL:  These are the pressure levels (in Pa) for which isobaric output will be
+generated by the post-processor.  The number of levels should equal the LSM
+value defined in the parmeta file used when compiling the post-processor.
+
+NPHS:  The frequency in fundamental model timesteps of calls to the physics
+package.  The physics are typically run less frequently (with a larger number
+of timesteps between physics calls) as the resolution increases and the
+timestep shortens.  NPHS is typically set to an even number such that NPHS *
+DT is approximately 600 (surface physics run about every 10 minutes).  For a
+10 km resolution run with a 20 second time step, the surface physics are run
+every 30th timestep and NPHS = 30.
+
+NCNVC:  The frequency in timesteps at which the convective parameterization is
+called.  Should be set to the same value as NPHS.
+
+NRADSH,NRADLH:  The interval in hours between calls to the radiation schemes
+(shortwave and longwave).  These values are typically 1 and 2, respectively.
+
+NTDDMP:  The frequency in fundamental timesteps that the divergence damping is
+applied (typically 1).
+
+The remaining values specify the number of hours over which the following
+types of parameters accumulate prior to being reset to zero.  They should be
+set considering the frequency at which output is generated (i.e., resetting
+precipitation totals every 2 h will be problematic if output is generated
+every three hours).
+
+TPREC: precipitation
+THEAT: average latent heating associated with precipitation
+TCLOD: average cloud fractions
+TRDSW: short wave radiation
+TRDLW: long wave radiation
+TSRFC: surface fluxes (e.g., average sensible heat flux)
+
+5)  enter the command:  run.com or run.com out
+
+The first option will start the model running with output listed to the 
+screen, while adding the argument out to the command will direct the 
+standard output to the file eta.out. 
+
+As the model runs, it will generate restrt and rdtnd files (with names such as
+restrt00.t00s and rdtnd00) The restrt files are the important output, as they
+contain the information used by the post-processor.  The rdtnd files are
+radiation tendencies and are not used.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%       The Post       %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The post-processor
+
+1a) Set the variable head in the script file outjob_special.  Most machines
+require this to be set to ``fort.'', while HPs need this to be ``ftn''.
+
+1b)  Run the post-processor with the following command:
+
+outjob_special stime etime tint
+
+where stime is the starting time (typically 00), etime is the final forecast
+hour, and tint is the interval at which restrt files were created during the
+run.
+
+
+CONTROLLING THE POST
+
+The cntrl.parm file (unit 14) controls the fields and levels that are written
+to the output GRIB file.  Each parameter is controlled by two lines in this
+file.  The first line describes the field, sets the Q and S values (no longer
+used by the post), and defines the precision and smoothing.
+
+SCAL defines the precision that is written out to the GRIB data.  Positive
+values give the number of significant digits to maintain, while negative
+values describe binary scaling (precise to 2^{SCAL}; SCAL=-3.0 gives output
+precise to the nearest 1/8).  Higher resolution runs should output the data
+with more precision if performing complex diagnostics on the data that involve
+higher order derivatives (e.g., Q vectors, vorticity advection).
+
+The final item on the first line is the smoothing block SMTH.  The first value
+controls the number of smoothing passes applied to the staggered (where mass
+and wind points are separate) grid and the second value controls the number of
+smoothing passes applied to the filled grid (the post ``fills'' the native
+grid so there are mass and wind data at all gridpoints).  The third value
+activates a 25-point Bleck filter on the output grid, which for the
+workstation post is the filled grid.  The Bleck filter removes small scale
+features and largely preserves extrema in the data even after multiple
+applications.  As seen in the included cntrl.parm file, smoothing typically is
+not performed on most fields.
+
+The second line controls the output levels (and whether a field will be
+created at all) by providing on/off switches for the output.
+
+For multi-level data the switches (1 = generate, 0 = do not generate) control
+which levels to create output for, with the lowest pressure level (furthest
+from ground) controlled by the leftmost element of the string.  This ordering
+can be reversed by using 2's in place of 1's; 2's make the switches be applied
+from the ground up.  For isobaric data the levels being switched on and off
+correspond to the SPL values in the fcstdata file, and the first LSM values in
+the string are used.  For single level data, the leftmost number is used as
+the switch (1 = generate, 0 = do not generate).
+
+EXAMPLES (assuming LSM=39, with SPL values defined every 25 hPa from 50
+hPa to 1000 hPa):
+
+(MESINGER MEAN SLP   ) Q=(   8), S=( 138), SCAL=(-0.1), SMTH=(00 00 00) 
+L=(10000 00000 00000 00000 00000 00000 00000 00000 00000 00000 00000 00000)
+
+(TEMP ON PRESS SFCS  ) Q=(  16), S=(   8), SCAL=(-3.0), SMTH=(00 00 00)
+ L=(00000 00000 00000 00000 00000 11111 11111 11110 00000 00000 00000 00000)
+
+(TEMP ON PRESS SFCS  ) Q=(  16), S=(   8), SCAL=(-3.0), SMTH=(00 00 00)
+ L=(22222 22222 22220 00000 00000 00000 00000 00000 00000 00000 00000 00000)
+ 
+(SPEC HUM ON ETA SFCS) Q=(  95), S=( 149), SCAL=( 2.7), SMTH=(00 00 00)
+ L=(22220 00000 00000 00000 00000 00000 00000 00000 00000 00000 00000 00000)
+ 
+ 
+Translations:
+
+The first output field is a special sea level pressure reduction designed for
+use with the Eta model.  SCAL=-0.1 specifies that the value is stored to a
+precision of 2^{-0.1}, or pretty close to the nearest Pa.
+
+The second example is isobaric temperature.  The initial 25 0's turn off
+output of this field between 50 hPa and 650 hPa, and then subsequent 14 1's
+turn on output between 675 hPa and 1000 hPa.  SCAL=-3.0 writes out the data to
+the nearest 0.125.
+
+The third output field is identical to the second, but by using 2's instead of
+1's it is clearer that output is being generated for the 14 output pressure
+levels closest to the ground.
+
+The fourth output field is for specific humidity on Eta surfaces.  The 2's
+indicate that the output switches are working from the ground up.  Thus data
+will be written for the four lowest Eta surfaces above ground.  SCAL=2.7 will
+maintain 2-3 significant digits (higher levels of precision create larger GRIB
+files, fractional values approach the precision of the next higher integer
+value but store fewer bits).
+
+ADDING A FIELD
+
+Many more fields are
+included in a sample file cntrl.example; the easiest way to add a field is
+to copy one of these into the cntrl.parm file.  The file 
+AVBL_RAWD in /worketa/post lists all fields available for posting, but
+in a different format.
+
+Suppose a posting of highest freezing level data is desired.  Searching
+through the AVBL_RAWD file finds the proper two lines.
+
+        DATA IFILV(165),AVBL(165),IQ(165),IS(165)
+      &             /1,'HIGHEST FREEZE LVL  ',007,204/
+
+
+The crucial piece of information from above is actually the character string
+in quotes on the second line.  The numbers listed after the character string
+(7 and 204 above) give the GRIB specification of the field described by the
+character string.  The first value is the GRIB parameter number ( 007 =
+geopotential height) and the second is vertical coordinate ( 204 = highest
+tropospheric freezing level; this is a special NCEP definition).  The number
+preceding the character string on line two is a switch that indicates whether
+the variables are stored on mass (1) or wind (0) gridpoints.
+
+To add this field into the cntrl.parm file, this character string (including
+any spaces) is placed between parenthesis on the first line of the cntrl file.
+Proper formatting is crucial in the cntrl.parm file; make sure any lines added
+match the format of the other lines in the file.  Q and S can be set to any
+value as they will be replaced by the GRIB definitions described above as the
+program runs.  For this example they are set to the GRIB values.  Scaling and
+smoothing are set to their desired values, and since this is ``single level''
+data, only the leftmost element of the second line is set to 1.  The lines
+added to the cntrl.parm file would look something like this:
+
+ (HIGHEST FREEZE LVL  ) Q=(   7), S=( 204), SCAL=(-2.0), SMTH=(00 00 00)
+  L=(10000 00000 00000 00000 00000 00000 00000 00000 00000 00000 00000 00000)
+
+
+INTERPOLATION TO OTHER GRID PROJECTIONS
+
+
+The workstation post creates GRIB output on the native e-grid (files with
+names like EGRD3Dhh.t00s), but this output on the rotated latitude-longitude
+projection of the Eta model is not readily degribbed by most software
+packages.  The outjob_special script uses the included GRIB utility copygb to
+interpolate the native grid data onto regular lat-lon (latlon_hh) and Lambert
+Conic Conformal grids (lmbc_hh), where hh represents the forecast hour.  These
+interpolated GRIB files on standard map projections should be much easier to
+degrib.
+
+One item to point out about copygb is that the binary precision specified in
+the cntrl.parm file will not automatically carry over to the copygb output
+files.  The copygb lines within the outjob_special script specify a scaling
+though the ``-s'' flag, but this scaling is applied equally to all fields.
+This indiscriminate scaling might make the lmbc and latlon files unnecessarily
+large.  A way to maintain control over the precision of various fields is to
+use more decimal scaling (SCAL > 0) in the cntrl.parm file.  Decimal scaling
+from the original EGRD3D file will automatically carry over to the
+interpolated GRIB fields without using a ``-s'' option.  A possible solution
+is given in the cntrl.dec file which avoids using binary scaling.  To use
+decimal scaling exclusively the following changes would need to be made to the
+outjob_special file:  1) change the symbolic link from cntrl.parm to
+cntrl.dec; 2) remove the -s"2,-3" from the copygb.x lines.  This purely
+decimal scaling option was not thoroughly tested, so it may require some
+tuning by the user.
+
+The file outjob_input_lat contains a string of numbers beginning with 255 that
+describes the lat-lon output domain.  These numbers have the format:
+
+255 0 IDIM JDIM LAT1 LON1 128 LAT2 LON2 DLAT DLON 64
+
+where
+
+IDIM, JDIM:  The dimensions of the output regular lat-lon grid.  These values
+should not be confused with the IM and JM of the model. 
+
+LAT1, LON1:  The latitude and longitude of the southwest corner of the output
+grid.  The values are expressed in millidegrees.  For example, a corner point
+at 15N, 112.5W would be expressed as 15000 -112500.
+
+LAT2, LON2:  As with LAT1, LON1, but for the northeast corner of the output 
+grid.
+
+DLAT, DLON:  These are the spacings between output gridpoints in millidegrees 
+of
+latitude and longitude, with a default value of 250.
+
+The file outjob_input_lmbc has a slightly different string of numbers:
+
+255 3 IDIM JDIM LAT1 LON1 8 CLON DX DY 0 64 TLAT1 TLAT2
+
+where
+
+IDIM, JDIM:  These are the dimensions of the Lambert Conformal grid.
+
+LAT1, LON1:  The southwest corner specified  as in the lat-lon output grid.
+
+CLON:  The center longitude of the lambert conformal projection.  It will 
+default to be the same as TLM0D (the center longitude of the model).
+
+DX,DY:  These are the grid spacings at the true latitude in the X and Y
+directions.  Values are expressed in meters, and default to the approximate
+spacing of the filled native e-grid (with both mass and wind data at all 
+points).
+
+TLAT1, TLAT2:  These are the ``true latitudes'' of the lambert conformal
+projection.  By default they both are equal to TPH0D (the center latitude of
+the model).
+
+These values should provide sufficient information to ``degrib'' the 
+data regardless of the software package being used. 
+
+* There is a great deal of flexibility built into the post-processor.  Unused
+data can be eliminated by commenting out any unneeded portions of
+outjob_special (e.g., eliminate the latlon or lmbc output).  Fields or levels
+that are not needed can be controlled through the cntrl.parm file.  The
+``outjob_input'' files can be edited to create output for a specific domain.
+
+ASIDE for GEMPAK users:
+
+A simple degribbing script compatible with GEMPAK is included in the package.
+Running outjob_special with five arguments instead of three will automatically
+degrib either the lmbc or latlon data into a GEMPAK datafile in the directory
+/worketa/gem_out.  The fourth argument is either lmbc or latlon, and the fifth
+argument is the name of the GEMPAK datafile.
+
+EXAMPLE:  To run the post for 12 h worth of data, with output every 3 h, and
+to degrib the Lambert Conformal data into the file lmbc_test.grd, the
+following command would be used:
+
+
+outjob_special 00 12 03 lmbc lmbc_test.grd
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Appendix:  Automating the process
+
+If the workstation Eta were to be run in real-time over the same domain, the
+editing process on the ETAIN file would become tedious.  After all, the only
+items being changed are date specifications.  A crude sample of how the
+process can be automated is included with the files ETAIN_raw and
+new_prep.sh_auto in the /worketa/eta/bin directory.  The script
+new_prep.sh_auto uses the command sed to substitute the current date for
+variables in the ETAIN_raw file, and output the ETAIN file.  To facilitate
+running new_prep.sh_auto as a crontab job it was required to change
+directories to an explicit path (equivalent to /worketa/eta/bin) so the
+relative paths in the rest of the script would make sense.  Similar directory
+specifications are needed for the ``data_prep'' job in /worketa/dprep/bin and
+with run.com in /worketa/eta/runs.
+
+Appendix:  The digital filter
+
+The Eta model has a filter that can be applied at the beginning of the
+forecast to give smoother fields over the first few hours of the forecast.  To
+use it, the call to DIGFILT in /worketa/eta/src/model/EBU.f at line 253 needs
+to be uncommented.  Then in /worketa/eta/src/model/DIGFILT.f the parameter
+NTIM needs to be set.  NTIM is the number of timesteps that the model will
+integrate forward and backward from the 0 h forecast time.  Larger values of
+NTIM will cut off lower frequency phenomena, and will provide more smoothing
+of the fields.  Overly large values of NTIM will cause the model to fail.  A
+good starting point for NTIM is a value that will give NTIM * DT approximately
+2400 s.  Filtering is most useful when going from a coarse initial analysis to
+a very high resolution Eta model run.  Filtered and unfiltered forecasts
+converge fairly quickly; filtered runs may give more aesthetically pleasing
+results during the initial 3-6 h of the forecast (the part of the forecast
+where the accuracy of workstation model results are most questionable).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% REFS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+               
+               Brief list of Eta journal References
+
+
+Dynamics/Numerics:
+
+Janjic, Z. I., 1974:  A stable centered difference scheme free of 
+two-grid-interval noise.  Mon. Wea. Rev., 102, 319-323.
+
+Janjic, Z. I., 1979:  Forward-backward scheme modified to prevent 
+two-grid-interval noise and its application in sigma coordinate models.  
+Contrib. Atmos. Phys., 52, 69-84.
+
+Janjic, Z. I., 1984:  Non-linear advection schemes and energy cascade on 
+semi-staggerd grids. Mon. Wea. Rev., 112, 1234-1245.
+
+Mesinger, F., 1973:  A method for construction of second-order accuracy 
+difference schemes permitting no false two-grid interval wave in the height 
+field.  Tellus, 25, 444-458.
+
+Mesinger, F., 1977:  Forward-backward scheme, and its use in a limited area 
+model.  Contrib. Atmos. Phys., 50, 200-210.
+
+Van Leer, B., 1977:  Towards the ultimate conservative difference scheme:  A 
+new approach to numerical convection.  J. Comput. Physics, 23, 276-299.
+
+
+Physics:
+
+Betts, A.K., 1986:  A new convective adjustment scheme.  Part I:
+Observational and theoretical basis.  Quart. J. Roy. Meteor. Soc., 112, 
+677-691.
+
+Betts, A.K., and M.J. Miller, 1986:  A new convective adjustment scheme.
+Part II:  Single column tests using GATE wave, BOMEX, ATEX and Arctic
+air-mass data sets.  Quart. J. Roy. Meteor. Soc., 112, 693-709.
+
+Betts, A. K., F. Chen, K. E. Mitchell, and Z. I. Janjic, 1997:  Assessment of
+land surface and boundary layer models in two operational versions of the NCEP
+Eta model using FIFE data.  Mon.  Wea.  Rev., 125, 2896-2916.
+
+Chen, F., K. Mitchell, J. Schaake, Y. Xue, H.-L. Pan, V. Koren,
+Q.Y. Duan, M. Ek and A. Betts, 1996: Modeling of land surface
+evaporation by four schemes and comparison with FIFE observations.
+J. Geophy. Research, 101, 7251-7268.
+
+Fels, S.B., and M.D. Schwarztkopf, 1975:  The simplified exchange
+approximation:  A new method for radiative transfer calculations.  J. Atmos. 
+Sci.,32, 1475-1488.
+
+Janjic, Z.I., 1990:  The step-mountain coordinate: physical package.
+Mon. Wea. Rev., 118, 1429-1443.
+
+Janjic, Z.I., 1994:  The step-mountain Eta coordinate model:  further
+developments of the convection, viscous sublayer, and turbulence closure
+schemes.  Mon. Wea. Rev., 122, 927-945.
+
+Lacis, A.A., and J.E. Hansen, 1974:  A parameterization of the absorption
+of solar radiation in the earth's atmosphere.  J. Atmos. Sci., 31, 
+118-133.
+
+Mellor, G.L., and T. Yamada, 1974:  A hierarchy of turbulence closure models
+for planetary boundary layers.  J.  Atmos.  Sci., 31, 1791-1806.
+
+Mellor, G.L., and T. Yamada, 1982:  Development of a turbulence closure
+model for geophysical fluid problems.  Rev. Geophys. Space Phys.,
+20, 851-875.
+
+Zhao, Q., and F. H. Carr, 1997:  A prognostic cloud scheme for operational NWP 
+models.  Mon. Wea. Rev., 125, 1931-1953.
+
+Zhao, Q.,  T. L. Black, M. E. Baldwin, 1997:  Implementation of the cloud 
+prediction scheme in the Eta model at NCEP.  Wea. Forecasting, 12, 697-712.
+
+General:
+
+Black, T., 1994:  The new NMC mesoscale Eta model:  description and
+forecast examples.  Wea. Forecasting, 9, 265-278.
+
+Mesinger, F., 1984:  A blocking technique for representation of mountains in 
+atmospheric models.  Riv. Meteor. Aeronaut., 44, 195-202.
+
+Mesinger, F., and T. L. Black, 1992:  On the impact of forecast accuracy of
+the step mountain (eta) vs.  sigma coordinate.  Meteor.  Atmos.  Phys., 50,
+47-60.
+
+Mesinger, F., Z.I. Janjic, S. Nickovic, D. Gavrilov and D.G. Deaven,
+1988:  The step-mountain coordinate: model description and
+performance for cases of alpine lee cyclogenesis and for a case of an
+Appalachian redevelopment. Mon. Wea. Rev., 116, 1493-1518.
+
+Rogers, E., D. G. Deaven, and G. J. DiMego, 1995:  The regional analysis
+system for the operational Eta model:  Original 80 km configuration, recent
+changes, and future plans.  Wea.  Forecasting, 10, 810-825.
+
+Rogers, E., T. L. Black, D. G. Deaven, G. J. DiMego, and others, 1996:
+Changes to the operational ``early'' Eta analysis/forecast system at the
+National Centers for Environmental Prediction.  Wea.  Forecasting, 11, 
+391-413.
+
+
+INTERNAL NCEP REFERENCES:
+
+Black, T. L., 1988:  The step-mountain, Eta coordinate Regional Model:
+A documentation.  NWS/NMC Washington, 47pp [Available from NCEP, 5200
+Auth Road, Camp Springs, MD 20746].
+
+Black, T.L., D.  Deaven and G.  DiMego, 1993:  The step-mountain Eta
+coordinate model:  80-km 'early' version and objective verifications.
+Technical Procedures Bulletin, No. 412, NOAA/NWS, 31 pp.  [Available from
+National Weather Service, Office of Meteorology, 1325 East-West Highway,
+Silver Spring, MD 20910]
+
+Dey, C. H., 1996:  The WMO format for storage of weather product information
+and the exchange of weather product messages in gridded binary (GRIB) format.
+Office Note 388, NOAA/NWS/NCEP.  [Available from NCEP, Room 101, 5200 Auth
+Road, Camp Springs, MD 20746.]
+
+Rogers, E., T.  Black, D.  Deaven, G.  DiMego, Q.  Zhao, Y.  Lin, N.  W.
+Junker, and M.  Baldwin, 1995:  Changes to the NMC operational Eta model
+analysis/forecast system.  Technical Procedures Bulletin No. 423, NOAA/NWS, 60
+pp.  [ National Weather Service, Office of Meteorology, 1325 East-West
+Highway, Silver Spring, MD 20910 ]
+
+Treadon, R.E., 1993:  The NMC Eta Model post processor:  A documentation.  NMC
+Office Note 394, NOAA/NWS, 44 pp.  [Available from NCEP, Room 101, 5200 Auth
+Road, Camp Springs, MD 20746.]

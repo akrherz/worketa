@@ -1,0 +1,77 @@
+
+
+I have put together a program (etamap) to simplify the job of
+selecting a computational domain for the workstation ETA.
+The program is based on the GEMPAK program, GPMAP, but takes
+the the parameters used to define your model domain. The default
+output is an X-window display, but you can also generate a gif
+or postcript file.
+
+The program and attendant files should be installed with your 
+nawips distribution.
+
+To install:
+
+        As user gempak
+        
+	% mv etamap.tar.Z $NAWIPS   - (usually /usr1/nawips)
+	% cd $NAWIPS
+	% zcat etamap.tar.Z | tar xvf -
+	% rehash
+	
+	Make sure that you don't get any error messages saying
+	"permission denied".  If this is the case, then do the 
+	following:
+	
+	% cd $NAWIPS/gempak
+	% chmod -R 755     help    parm    pdf
+	
+	Then repeat the installation as indicated above.
+
+	
+To run the program:
+
+	roz@kielbasa-> etamap
+ 	GCENTER   Lat-lon center                    39.0;-108.0
+	GSPACE    Model grid spacing                0.098
+ 	IMJM      Model Grid points                 71;121
+ 	EMAP      Map color/dash/width              23//2
+ 	ETITLE    Title color/line/title            1/-2/WORKSTATION ETA DOMAIN
+ 	LATLO     Line color/dash/width/label/inc   18/10/1/1;1/2;2
+ 	ETEXT     Text size/font/width/hw flag      1/33//HW
+ 	DEVICE    Device|name|x size;y size|color   XW
+ 	CLEAR     Clear screen flag                 YES
+ 	
+ 		
+ 	GEMPAK-ETAMAP> list
+ 	GCENTER  = 39.0;-108.0    <-- WS ETA DOMAIN PARAMETER
+ 	GSPACE   = 0.098          <-- WS ETA DOMAIN PARAMETER
+ 	IMJM     = 71;121         <-- WS ETA DOMAIN PARAMETER
+ 	EMAP     = 23//2
+ 	ETITLE   = 1/-2/WORKSTATION ETA DOMAIN
+ 	LATLO    = 18/10/1/1;1/2;2
+ 	ETEXT    = 1/33//HW
+ 	DEVICE   = XW
+ 	CLEAR    = YES
+ 	GEMPAK-ETAMAP> 
+ 	
+ 	
+A help page is provided. Simply type "help etamap" at the gempak prompt.
+
+you can also get help on any of the other parameters (GCENTER, GSPACE,
+IMJM, etc, ) by also typing "help <parameter>" at the prompt.
+
+Bob
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 	
+ Robert A. Rozumalski 
+ NWS National SOO/SAC Coordinator
+ COMET/UCAR PO Box 3000             Phone:  (303) 497-8356
+ Boulder, CO 80307-3000             FAX:    (303) 497-8491
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+        

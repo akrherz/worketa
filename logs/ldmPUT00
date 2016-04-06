@@ -1,0 +1,19 @@
+cd /home/models/iowaeta/worketa/data/eta_prep 
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D00.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D03.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D06.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D09.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D12.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D15.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D18.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D21.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D24.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D27.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D30.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D33.tm00
+/home/ldm/bin/pqinsert eta.T00Z.AWIP3D36.tm00
+/home/ldm/bin/pqinsert imssnow.grb
+/home/ldm/bin/pqinsert snowdepth.grb
+mv gdas1.T00Z.sstgrb gdas2.T00Z.sstgrb
+/home/ldm/bin/pqinsert gdas2.T00Z.sstgrb
+/home/ldm/bin/pqinsert gdas1.T00Z.sstgrb.index

@@ -1,0 +1,170 @@
+
+
+III. RUNNING THE SOO/STRC WORKSTATION ETA
+
+
+There  are three primary programs (C Shell scripts) that are  used
+to   run   the   SOO/STRC   workstation   eta,   eta_download.csh,
+eta_run.csh,  and eta_convert.csh. These files permanently  reside
+in the $ETA_HOME/exe/scripts directory, with linked copies located
+in the $ETA_HOME/run_time directory.
+
+NOTE:  Each of these scripts should be run in the order  presented
+below from the $ETA_HOME/run_time director. Please read each  file
+and  follow  the  instructions for configuring and  running  these
+scripts.  If  you  have any questions, please do not  hesitate  to
+contact me.
+
+
+Step 1:   run eta_download.csh
+
+     This  script  is primarily used to download and  process  the
+     GRIB   files   necessary  for  running  the  WS  Eta   model.
+     eta_download.csh will download the GRIB data from  the  NCEP,
+     OSO,  SOOSAC, or Regional ftp servers and then convert  these
+     data into a workstation Eta-ready format. It may also be used
+     to  process preexisting GRIB data for case studies. All  GRIB
+     files     are    downloaded    and    processed    in     the
+     $ETA_HOME/data/eta_prep directory, which can also be accessed
+     by  $ETA_PREP.  There are a number of arguments that  can  be
+     passed  to eta_download.csh that are described at the top  of
+     file.  There is also some minor configuration to do.
+
+
+Step 2:   run eta_run.csh
+
+     This  program handles the tasks of creating the terrain  data
+     set,  generating  the  initial and boundary  conditions,  and
+     running  the model. All configurable parameters described  at
+     the  top  of  the file with suggestions for input. Everything
+     necessary for running the model is presented at the beginning
+     of the file.
+     
+     There  are  2  arguments  (A and B) that  may  be  passed  to
+     eta_run.csh.
+     
+     % eta_run.csh <A or B>
+     
+     The "A" (literally) initiates the "auto convert" option. This
+     option  will convert the WS Eta model output while the  model
+     is  running, i.e, “on the fly”, rather than waiting until the
+     model  has completed execution. More info is provided in  the
+     eta_convert.csh script described below.
+     
+     The "B" argument  is for running the benchmark  case.   The
+     benchmark  case  was  devised as  a  means  to  evaluate  the
+     performance  of the WS Eta on your system compared  to  other
+     workstations, and to assist you is setting up your  real-time
+     runs.  You are STRONGLY encouraged to run a benchmark case on
+     your  workstation.  Please see the  BENCHMARKING  section  in
+     eta_run.csh for more information.
+
+
+     Running on multi-CPU workstations
+
+     You  do not need to change anything in the $WS_ETA/Eta.cshrc  
+     file unless  you have a milti-CPU machine and want to run the 
+     model on more  than 1 processor.  If you have a multi-CPU 
+     workstation, you will need to change the NCPUS variable near 
+     the bottom  of  the Eta.cshrc file.
+
+     Change:
+
+          setenv    NCPUS     1
+     to
+          setenv    NCPUS     2
+
+
+     After modifying these files, log out and back in as user "eta".
+
+     BINARY USERS: Note that if you are using the binary distribution,
+                   you will need to install the 2 CPU version of the
+                   executables under LINUX systems.
+
+     WARNING:      If you are running with 2 CPUs, I suggest turning
+                   OFF the autoconvert option in eta_autorun.csh. The
+                   performance of the workstation decreases dramatically
+                   when the model and postprocessor are competing for
+                   resources when running with multiple CPUs. More on
+                   the eta_autorun.csh script below.
+
+
+                    
+Step 3:   run eta_convert.csh
+
+     The  primary responsibility of the eta_convert.csh script  is
+     to  process the raw WS Eta output files into GRIB format  and
+     ship these data to a location for viewing.  This program also
+     has  the option of generating a GEMPAK-formatted file for use
+     with  NAWIPS or Nsharp. All the options are described in  the
+     configuration section at the beginning of the file.
+
+
+     
+In  addition  to  the  three programs listed above,  there are 2
+additional  scripts to further simplify the process of running  the
+workstation ETA.
+
+
+eta_autorun.csh
+
+     The  eta_autorun.csh script will allow you  to  automate  the
+     entire  process  of  downloading the GRIB data,  running  the
+     model,  and converting the data. This script may  used  in  a
+     cron  or  run manually from the command line following  minor
+     configuration. Like the previous run-time scripts, this  file
+     is  located  in  $WS_ETA/exe/scripts,  with  a  link  to  the
+     $WS_ETA/run_time  directory.  An  example  of   running   the
+     eta_autorun.csh via cron is as follows:
+
+     20 19 * * * (PATH)/eta_autorun.csh 00 >> /tmp/autorun_eta00.log 2>&1
+     20 07 * * * (PATH)/eta_autorun.csh 12 >> /tmp/autorun_eta12.log 2>&1
+
+     Where PATH refers to the absolute path name. Please read  the
+     eta_autorun.csh file for more info.
+
+
+eta_clean
+
+     The eta_clean script is located in the $WS_ETA/exe/scripts
+     directory and is used to clean the SOO/STRC distribution of
+     extraneous files created while running the run-time scripts.
+     The script takes 1 or 5 possible arguments [ 0 1 2 3 4 ] 
+     ranging from light scouring of the $ETA_LOGS directory { 0 } 
+     to returning package to original out of the tar file condition 
+     { 4 }. 
+
+     If you are having problems running the model when you did not
+     previously have any, I suggest running the eta_clean script
+     with the "3" argument:
+
+       %  eta_clean 3
+
+     and attempt to run the model again.
+
+
+
+BENCHMARKING
+
+After  installing  the SOO/STRC workstation  Eta  model,  you  are
+encouraged  to  test  your distribution by running  the  benchmark
+case.   After completing your local configuration of the  run-time
+scripts,   execute   the   following  from  the   $WS_ETA/run_time
+directory:
+
+               %    eta_download.csh B
+               %    eta_run.csh B
+               %    eta_convert.csh
+
+
+Here are just a few results from the new benckmark case.
+
+Much more information on benchmarking is provided in the eta_run.csh
+script.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Robert  A. Rozumalski         NWS National SOO/STRC Coordinator
+                              Robert.Rozumalski@noaa.gov
+COMET/UCAR PO Box 3000        Phone: (303) 497-8356
+Boulder, CO 80307-3000        FAX: (303) 497-8491
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

@@ -1,0 +1,265 @@
+  
+ ETA grid parameters:
+    im   =           75  jm  =          121
+    imt  =          149  jmt =           61
+    imjm =         9015
+  
+ soil levels  in ecommons             4
+  centered at     41.70000       -94.00000    
+ seares in eta_commons:     2.000000    
+  
+ ETA grid parameters:
+    im   =           75  jm  =          121
+    imt  =          149  jmt =           61
+    imjm =         9015
+  
+ soil levels  in ecommons             4
+  centered at     41.70000       -94.00000    
+ seares in eta_commons:     2.000000    
+ back from eta_commons    2.000000    
+ wbd, sbd    -7.252000       -5.880000    
+ ETA grid window:
+    Northwest =    47.57999       -104.6365    
+    Southeast =    35.44683       -83.36351    
+  
+ reading topo data /U30N110W
+ reading topo data /U30N100W
+ reading topo data /U30N090W
+ reading topo data /U40N110W
+ reading topo data /U40N100W
+ reading topo data /U40N090W
+ done reading data?
+ nssbsp=            17
+ imjm=          9015
+ 
+ boxes with       0 subboxes filled:      9015
+ boxes with       1 subboxes filled:         0
+ boxes with       2 subboxes filled:         0
+ boxes with       3 subboxes filled:         0
+ boxes with       4 subboxes filled:         0
+ boxes with       5 subboxes filled:         0
+ boxes with       6 subboxes filled:         0
+ boxes with       7 subboxes filled:         0
+ boxes with       8 subboxes filled:         0
+ boxes with       9 subboxes filled:         0
+ boxes with      10 subboxes filled:         0
+ boxes with      11 subboxes filled:         0
+ boxes with      12 subboxes filled:         0
+ boxes with      13 subboxes filled:         0
+ boxes with      14 subboxes filled:         0
+ boxes with      15 subboxes filled:         0
+ boxes with      16 subboxes filled:         0
+                        total boxes:      9015
+ 
+ topo,land,subboxes with    0 points:       2   36060      85
+ topo,land,subboxes with    1 points:       3       0      19
+ topo,land,subboxes with    2 points:       2       0      16
+ topo,land,subboxes with    3 points:       6       0       8
+ topo,land,subboxes with    4 points:       0       0       7
+ topo,land,subboxes with    5 points:       2       0       9
+ topo,land,subboxes with    6 points:       0       0       6
+ topo,land,subboxes with    7 points:       0       0       0
+ topo,land,subboxes with    8 points:       2       0       4
+ topo,land,subboxes with    9 points:       0       0       2
+ topo,land,subboxes with   10 points:       0       0       4
+ topo,land,subboxes with   11 points:       0       0       4
+ topo,land,subboxes with   12 points:       2       0      10
+ topo,land,subboxes with   13 points:       0       0       2
+ topo,land,subboxes with   14 points:       0       0       2
+ topo,land,subboxes with   15 points:       0       0       4
+ topo,land,subboxes with   16 points:       2       0       6
+ topo,land,subboxes with   17 points:       0       0       8
+ topo,land,subboxes with   18 points:       0       0      34
+ topo,land,subboxes with   19 points:       2       0    2639
+ topo,land,subboxes with   20 points:       2       0    5123
+ topo,land,subboxes with   21 points:       0       0   10951
+ topo,land,subboxes with   22 points:       2       0   25548
+ topo,land,subboxes with   23 points:       0       0   34287
+ topo,land,subboxes with   24 points:       2       0   42150
+ topo,land,subboxes with   25 points:       0       0   15684
+ topo,land,subboxes with   26 points:       0       0    6736
+ topo,land,subboxes with   27 points:       0       0     835
+ topo,land,subboxes with   28 points:       0       0      57
+ topo,land,subboxes with   29 points:       0       0       0
+ topo,land,subboxes with   30 points:       0       0       0
+ topo,land,subboxes with   31 points:       0       0       0
+ topo,land,subboxes with   32 points:       0       0       0
+ topo,land,subboxes with   33 points:       0       0       0
+ topo,land,subboxes with   34 points:       2       0       0
+ topo,land,subboxes with   35 points:       0       0       0
+ topo,land,subboxes with   36 points:       2       0       0
+ topo,land,subboxes with   37 points:       0       0       0
+ topo,land,subboxes with   38 points:       0       0       0
+ topo,land,subboxes with   39 points:       0       0       0
+ topo,land,subboxes with   40 points:       0       0       0
+ topo,land,subboxes with   41 points:       0       0       0
+ topo,land,subboxes with   42 points:       0       0       0
+ topo,land,subboxes with   43 points:       0       0       0
+ topo,land,subboxes with   44 points:       2       0       0
+ topo,land,subboxes with   45 points:       0       0       0
+ topo,land,subboxes with   46 points:       0       0       0
+ topo,land,subboxes with   47 points:       2       0       0
+ topo,land,subboxes with   48 points:       0       0       0
+ topo,land,subboxes with   49 points:       0       0       0
+ topo,land,subboxes with   50 points:       0       0       0
+ topo,land,subboxes with   51 points:       0       0       0
+ topo,land,subboxes with   52 points:       0       0       0
+ topo,land,subboxes with   53 points:       0       0       0
+ topo,land,subboxes with   54 points:       0       0       0
+ topo,land,subboxes with   55 points:       2       0       0
+ topo,land,subboxes with   56 points:       0       0       0
+ topo,land,subboxes with   57 points:       0       0       0
+ topo,land,subboxes with   58 points:       0       0       0
+ topo,land,subboxes with   59 points:       0       0       0
+ topo,land,subboxes with   60 points:       2       0       0
+ topo,land,subboxes with   61 points:       0       0       0
+ topo,land,subboxes with   62 points:       0       0       0
+ topo,land,subboxes with   63 points:       2       0       0
+ topo,land,subboxes with   64 points:       0       0       0
+ topo,land,subboxes with   65 points:       2       0       0
+ topo,land,subboxes with   66 points:       2       0       0
+ topo,land,subboxes with   67 points:       6       0       0
+ topo,land,subboxes with   68 points:       2       0       0
+ topo,land,subboxes with   69 points:       4       0       0
+ topo,land,subboxes with   70 points:       0       0       0
+ topo,land,subboxes with   71 points:       0       0       0
+ topo,land,subboxes with   72 points:       2       0       0
+ topo,land,subboxes with   73 points:       0       0       0
+ topo,land,subboxes with   74 points:       0       0       0
+ topo,land,subboxes with   75 points:       4       0       0
+ topo,land,subboxes with   76 points:       6       0       0
+ topo,land,subboxes with   77 points:       0       0       0
+ topo,land,subboxes with   78 points:       0       0       0
+ topo,land,subboxes with   79 points:       0       0       0
+ topo,land,subboxes with   80 points:       0       0       0
+ topo,land,subboxes with   81 points:       6       0       0
+ topo,land,subboxes with   82 points:       4       0       0
+ topo,land,subboxes with   83 points:     492       0       0
+ topo,land,subboxes with   84 points:     881       0       0
+ topo,land,subboxes with   85 points:    1548       0       0
+ topo,land,subboxes with   86 points:    1968       0       0
+ topo,land,subboxes with   87 points:    2010       0       0
+ topo,land,subboxes with   88 points:    2126       0       0
+ topo,land,subboxes with   89 points:    2192       0       0
+ topo,land,subboxes with   90 points:    2105       0       0
+ topo,land,subboxes with   91 points:    2305       0       0
+ topo,land,subboxes with   92 points:    2450       0       0
+ topo,land,subboxes with   93 points:    2049       0       0
+ topo,land,subboxes with   94 points:    1929       0       0
+ topo,land,subboxes with   95 points:    2086       0       0
+ topo,land,subboxes with   96 points:    2634       0       0
+ topo,land,subboxes with   97 points:    1627       0       0
+ topo,land,subboxes with   98 points:    1899       0       0
+ topo,land,subboxes with   99 points:    1550       0       0
+ topo,land,subboxes with  100 points:    1793       0       0
+ topo,land,subboxes with >100 points:    2335       0       0
+ topo,land,subboxes           totals:   36060   36060  144240
+ 
+ looping on 109 from            151  to          8865
+ starting sea program, seares=     2.000000    
+ sigma=   F
+ unit 2 open          4501         2101
+ data read successfully 
+ GOT TO THIS POINT
+ sea mask  
+ silhouette/mean topography is done
+ empty subboxes have been filled
+ constants defined
+ statistics zeroed out
+ memory here?
+ z0eff calculation done
+ 
+ statistics for topography source data   4
+ 
+ 
+ statistics for topography source data   3
+ 
+   1o   4165 3805   360   2828 2469   359   3732 3371   361   3053 2700   353
+   2o   1580 1568    12   1504 1487    17   1648 1631    17   1640 1619    21
+   3o   1449 1438    11   1599 1591     8   1559 1549    10   1599 1586    13
+   4o    934  924    10   1488 1480     8   1123 1117     6   1357 1353     4
+   5o    340  338     2    653  651     2    396  395     1    519  516     3
+   6o     15   15     0    302  301     1     25   25     0    239  238     1
+   7o      0    0     0     91   91     0      0    0     0     58   58     0
+   8o      0    0     0     18   18     0      0    0     0     18   18     0
+ 
+ statistics for topography source data   2
+ 
+ 
+ statistics for topography source data   1
+ 
+   1o   4165 3805   360   2828 2469   359   3732 3371   361   3053 2700   353
+   2o   1580 1568    12   1504 1487    17   1648 1631    17   1640 1619    21
+   3o   1449 1438    11   1599 1591     8   1559 1549    10   1599 1586    13
+   4o    934  924    10   1488 1480     8   1123 1117     6   1357 1353     4
+   5o    340  338     2    653  651     2    396  395     1    519  516     3
+   6o     15   15     0    302  301     1     25   25     0    239  238     1
+   7o      0    0     0     91   91     0      0    0     0     58   58     0
+   8o      0    0     0     18   18     0      0    0     0     18   18     0
+ to conh12t
+ 2d zoeff values
+ sea mask at end of topo 
+1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.
+1.0.0.0.0.0.0.0.0.0.1.0.1.1.1.
+1.0.0.0.0.0.0.0.0.0.1.0.1.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.1.1.
+1.0.0.0.0.0.0.0.0.0.0.0.0.1.0.
+1.0.0.0.0.0.0.0.0.0.0.0.1.1.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.1.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.1.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.1.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.1.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.1.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.0.0.0.0.0.0.0.0.0.0.0.0.0.0.
+1.1.1.1.1.1.1.1.1.1.1.1.1.1.1.
+   0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+   0.  801.  691.  610.  472.  365.  381.  403.  423.  484.  183.  272.  183.  183.  200.
+   0.  877.  657.  558.  482.  314.  421.  435.  390.  185.  183.  366.  282.  284.  212.
+   0.  853.  716.  558.  561.  328.  414.  403.  399.  350.  505.  498.  351.  208.  204.
+   0.  830.  653.  532.  475.  391.  366.  369.  329.  359.  467.  514.  302.  176.  239.
+   0.  878.  724.  599.  445.  578.  343.  373.  291.  382.  461.  513.  228.  176.  299.
+   0.  827.  735.  589.  408.  555.  311.  345.  276.  336.  437.  455.  183.  176.  413.
+   0.  822.  592.  569.  410.  532.  327.  329.  266.  268.  407.  309.  235.  184.  378.
+   0.  895.  712.  490.  445.  544.  408.  309.  314.  296.  302.  261.  218.  191.  338.
+   0.  847.  697.  555.  544.  540.  520.  316.  378.  352.  305.  240.  199.  200.  299.
+   0.  890.  828.  578.  501.  472.  496.  376.  382.  340.  354.  297.  207.  186.  289.
+   0. 1077.  958.  693.  488.  439.  437.  396.  356.  349.  240.  287.  180.  176.  239.
+   0. 1151.  963.  710.  491.  366.  443.  361.  338.  347.  300.  292.  220.  176.  286.
+   0. 1190. 1041.  822.  600.  496.  393.  373.  343.  289.  239.  244.  212.  176.  287.
+   0. FORTRAN STOP
+1180. 1023.  774.  628.  490.  377.  342.  319.  255.  231.  238.  206.  190.  282.
+   0. 1092.  996.  821.  642.  497.  360.  360.  261.  252.  232.  265.  209.  214.  293.
+   0. 1097.  927.  781.  565.  489.  331.  400.  264.  225.  224.  170.  191.  212.  253.
+   0. 1145.  946.  727.  579.  455.  308.  393.  309.  217.  231.  230.  200.  201.  261.
+   0. 1150.  844.  706.  570.  441.  311.  324.  308.  219.  206.  194.  232.  234.  276.
+   0. 1135.  878.  686.  541.  424.  308.  312.  265.  216.  171.  180.  208.  260.  300.
+   0. 1215.  914.  672.  489.  439.  357.  300.  216.  221.  175.  178.  204.  223.  268.
+   0. 1236.  928.  682.  494.  382.  347.  285.  209.  238.  196.  194.  169.  179.  206.
+   0. 1188.  837.  654.  530.  367.  332.  280.  219.  269.  142.  159.  152.  157.  190.
+   0. 1160.  903.  660.  535.  437.  335.  278.  295.  192.  182.  132.  127.  148.  138.
+   0. 1080.  877.  692.  517.  437.  320.  251.  269.  287.  236.  147.  135.  127.  178.
+   0. 1065.  874.  705.  504.  394.  301.  247.  298.  298.  326.  134.  166.  141.  238.
+   0. 1053.  835.  608.  478.  372.  262.  283.  376.  376.  243.  122.  142.  165.  228.
+   0. 1038.  772.  531.  391.  344.  266.  330.  376.  380.  232.   95.  147.  197.  227.
+   0. 1057.  868.  599.  408.  288.  218.  299.  300.  313.  126.   85.  156.  166.  201.
+   0. 1049.  771.  631.  357.  300.  186.  354.  553.  210.   81.   79.  132.  250.  292.
+   0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.    0.
+ STOP_TERRAIN
